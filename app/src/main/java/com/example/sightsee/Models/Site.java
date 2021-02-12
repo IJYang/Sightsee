@@ -1,6 +1,7 @@
 package com.example.sightsee.Models;
 
 import com.example.sightsee.R;
+import java.util.ArrayList;
 
 public class Site {
     private String name;
@@ -27,11 +28,18 @@ public class Site {
         this.address = address;
     }
 
-    public static final Site[] test_sites = {
-            new Site("Science World", "Museum", R.drawable.science_world, "1455 Quebec St, Vancouver BC"),
-            new Site("Vancouver Aquarium", "Museum", R.drawable.vancouver_aquarium, "845 Avison Way, Vancouver BC"),
-            new Site("Capilano Suspension Park", "Hiking", R.drawable.capilano, "3735 Capilano Rd, North Vancouver BC"),
-            new Site("Stanley Park", "Trails", R.drawable.seawall, "Vancouver BC, V6G 1Z4"),
-            new Site("Sea to Sky", "Hiking", R.drawable.sea_to_sky, "36800 BC-99, Squamish BC")
-    };
+    public static ArrayList<Site> get_test_sites() {
+            ArrayList<Site> site_list = new ArrayList<Site>();
+            Site sw = new Site("Science World", "Museum", R.drawable.science_world, "1455 Quebec St, Vancouver BC");
+            Site va =new Site("Vancouver Aquarium", "Museum", R.drawable.vancouver_aquarium, "845 Avison Way, Vancouver BC");
+            Site csp =new Site("Capilano Suspension Park", "Hiking", R.drawable.capilano, "3735 Capilano Rd, North Vancouver BC");
+            Site sp =new Site("Stanley Park", "Trails", R.drawable.seawall, "Vancouver BC, V6G 1Z4");
+            Site sts =new Site("Sea to Sky", "Hiking", R.drawable.sea_to_sky, "36800 BC-99, Squamish BC");
+            site_list.add(sw);
+            site_list.add(va);
+            site_list.add(csp);
+            site_list.add(sp);
+            site_list.add(sts);
+            return site_list;
+    }
 }
