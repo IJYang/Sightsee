@@ -22,4 +22,35 @@
         android:layout_height="wrap_content"
         android:text="Address" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="10pt"
+            android:text="Comments"
+            android:layout_weight="0.50"
+            />
+
+        <Button
+            android:id="@+id/moreCommentsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:background="#0000E8"
+            android:onClick="moreComments"
+            android:text="See More" />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/siteCommentFragment"
+        android:name="com.example.sightsee.CommentFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+
+
 </LinearLayout>

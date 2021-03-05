@@ -1,5 +1,6 @@
 package com.example.sightsee;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,9 +25,7 @@ public class CommentFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public CommentFragment() {
-        // Required empty public constructor
-    }
+    public CommentFragment() {}
 
     /**
      * Use this factory method to create a new instance of

@@ -1,18 +1,21 @@
 package com.example.sightsee;
 
 
-import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.sightsee.Models.Site;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sightsee.Models.Site;
+
 public class SiteDetailActivity extends AppCompatActivity {
+
+    private Button moreCommentsBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,10 @@ public class SiteDetailActivity extends AppCompatActivity {
 
         TextView addresstv = findViewById(R.id.siteAddress);
         addresstv.setText("Address: " + address);
+    }
 
+    public void moreComments(View view) {
+        Intent intent = new Intent(SiteDetailActivity.this, CommentsActivity.class);
+        startActivity(intent);
     }
 }
