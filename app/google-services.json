@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "89141417219",
+    "firebase_url": "https://sightsee-2d4f7-default-rtdb.firebaseio.com",
+    "project_id": "sightsee-2d4f7",
+    "storage_bucket": "sightsee-2d4f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89141417219:android:1cf8e8f2b22b92fef88536",
+        "android_client_info": {
+          "package_name": "com.example.sightsee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89141417219-b7gf4h09mdeevgbju9bdisish79q5ch7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACB_u05_CMOdLJCZBmQNw3TpGWf4we80c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89141417219-b7gf4h09mdeevgbju9bdisish79q5ch7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

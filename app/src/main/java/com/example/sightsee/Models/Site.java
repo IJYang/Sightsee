@@ -35,11 +35,11 @@ public class Site {
 
     public static ArrayList<Site> get_test_sites() {
             ArrayList<Site> site_list = new ArrayList<Site>();
-            Site sw = new Site(0, "Science World", "Museum", R.drawable.science_world, "1455 Quebec St, Vancouver BC");
-            Site va =new Site(1, "Vancouver Aquarium", "Museum", R.drawable.vancouver_aquarium, "845 Avison Way, Vancouver BC");
-            Site csp =new Site(2, "Capilano Suspension Park", "Hiking", R.drawable.capilano, "3735 Capilano Rd, North Vancouver BC");
-            Site sp =new Site(3, "Stanley Park", "Trails", R.drawable.seawall, "Vancouver BC, V6G 1Z4");
-            Site sts =new Site(4, "Sea to Sky", "Hiking", R.drawable.sea_to_sky, "36800 BC-99, Squamish BC");
+            Site sw = new Site(0, "Science World", "Museum", R.mipmap.science_world, "1455 Quebec St, Vancouver BC");
+            Site va =new Site(1, "Vancouver Aquarium", "Museum", R.mipmap.vancouver_aquarium, "845 Avison Way, Vancouver BC");
+            Site csp =new Site(2, "Capilano Suspension Park", "Hiking", R.mipmap.capilano, "3735 Capilano Rd, North Vancouver BC");
+            Site sp =new Site(3, "Stanley Park", "Trails", R.mipmap.seawall, "Vancouver BC, V6G 1Z4");
+            Site sts =new Site(4, "Sea to Sky", "Hiking", R.mipmap.sea_to_sky, "36800 BC-99, Squamish BC");
             site_list.add(sw);
             site_list.add(va);
             site_list.add(csp);
