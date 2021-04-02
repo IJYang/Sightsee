@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.sightsee.Models.Site;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ListView lv;
     ArrayList<Site> siteList;
+    TextView tvLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("address", site.getAddress());
                 intent.putExtra("image", site.getImageResourceId());
                 startActivity(intent);
+            }
+        });
+
+        tvLogout = findViewById(R.id.tvLogout);
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut(); // logout
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
             }
         });
     }
