@@ -2,11 +2,13 @@ package com.example.sightsee;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sightsee.Models.Site;
@@ -31,6 +33,13 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         }
 
         // Lookup view for data population
+        LinearLayout site_background = convertView.findViewById(R.id.site_background);
+        if (position % 2 == 0) {
+            site_background.setBackgroundColor(Color.parseColor("#0093d7"));
+        }
+        else {
+            site_background.setBackgroundColor(Color.parseColor("#24C82A"));
+        }
         ImageView site_image = convertView.findViewById(R.id.site_image);
         TextView site_name = convertView.findViewById(R.id.site_name);
         TextView site_type = convertView.findViewById(R.id.site_type);

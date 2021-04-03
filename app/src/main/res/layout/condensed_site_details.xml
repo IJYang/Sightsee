@@ -28,6 +28,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/site_background"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.45"
@@ -40,8 +41,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="22sp"
+                    android:gravity="end"
                     android:textColor="@color/white"/>
 
                 <TextView
