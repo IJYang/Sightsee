@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,18 +32,18 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editEmail = findViewById(R.id.editEmail);
-        editPassword = findViewById(R.id.editPassword);
-        btnRegister = findViewById(R.id.btnRegister);
-        tvLogin = findViewById(R.id.tvLogin);
-        progressBar = findViewById(R.id.progressBar);
-
         fAuth = FirebaseAuth.getInstance();
 
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
+
+        editEmail = findViewById(R.id.editEmail);
+        editPassword = findViewById(R.id.editPassword);
+        btnRegister = findViewById(R.id.btnRegister);
+        tvLogin = findViewById(R.id.tvLogin);
+        progressBar = findViewById(R.id.progressBar);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

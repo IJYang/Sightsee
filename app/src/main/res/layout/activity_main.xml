@@ -31,7 +31,7 @@
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="23dp"
-        android:background="#C1C1C1"
+        android:background="#ECECEC"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"

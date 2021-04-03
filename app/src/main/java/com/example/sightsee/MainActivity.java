@@ -1,13 +1,14 @@
 package com.example.sightsee;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import androidx.fragment.app.Fragment;
 
 import com.example.sightsee.Models.Site;
 import com.google.firebase.auth.FirebaseAuth;
