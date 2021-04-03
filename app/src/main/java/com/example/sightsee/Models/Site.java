@@ -40,11 +40,13 @@ public class Site {
             Site csp =new Site(2, "Capilano Suspension Park", "Hiking", R.drawable.capilano, "3735 Capilano Rd, North Vancouver BC");
             Site sp =new Site(3, "Stanley Park", "Trails", R.drawable.seawall, "Vancouver BC, V6G 1Z4");
             Site sts =new Site(4, "Sea to Sky", "Hiking", R.drawable.sea_to_sky, "36800 BC-99, Squamish BC");
+            Site gi =new Site(5, "Granville Island", "Shopping", R.drawable.granville_island, "1689 Johnston St, Vancouver, BC V6H 3R9");
             site_list.add(sw);
             site_list.add(va);
             site_list.add(csp);
             site_list.add(sp);
             site_list.add(sts);
+            site_list.add(gi);
             return site_list;
     }
 }
