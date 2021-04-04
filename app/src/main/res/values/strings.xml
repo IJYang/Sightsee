@@ -11,6 +11,4 @@
     <string name="nav_close_drawer">Close Navigation drawer</string>
     <string name="drawer_header">Nav Drawer Lab</string>
     <string name="user_name">Inseob Yang A00931993</string>
-    <string name="profile">Profile</string>
-    <string name="filter">Filter</string>
 </resources>
