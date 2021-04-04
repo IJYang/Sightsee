@@ -67,6 +67,7 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- ///// Comments ///// -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -75,8 +76,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
                 android:textSize="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/tv_comments"
                 android:layout_weight="0.50"
@@ -101,19 +102,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
 
+        <!--///// Promotions //////-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="14pt"
                 android:text="@string/tv_promo_title"
                 android:layout_weight="0.50"
-                android:textColor="#7D7D7D"
+                android:textColor="@color/white"
                 />
 
             <Button
@@ -121,12 +125,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_weight="0.10"
                 android:backgroundTint="#E5E5E5"
                 android:onClick="morePromotions"
                 android:textColor="#7D7D7D"
                 android:text="@string/see_more_button"
-                android:textSize="20sp" />
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
 
         </LinearLayout>
 
