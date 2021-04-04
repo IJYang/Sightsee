@@ -1,58 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/expanded_site_background"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/siteImage"
-        android:layout_height="200dp"
-        android:layout_width="match_parent"
-        android:scaleType="centerInside"
-        android:text="Image" />
-    <TextView
-        android:id="@+id/siteName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name" />
-    <TextView
-        android:id="@+id/siteAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="14pt"
-            android:text="@string/tv_comments"
-            android:layout_weight="0.50"
-            android:textColor="#7D7D7D"
-            />
-
-        <Button
-            android:id="@+id/moreCommentsButton"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/siteImage"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:text="Image" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="0.10"
-            android:backgroundTint="#E5E5E5"
-            android:onClick="moreComments"
-            android:textColor="#7D7D7D"
-            android:text="@string/see_more_button"
-            android:textSize="20sp" />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/siteName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                android:layout_marginLeft="10dp"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/expanded_site_detail_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_header"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/siteAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:textSize="14pt"
+                android:text="@string/tv_comments"
+                android:layout_weight="0.50"
+                android:textColor="@color/white"
+                />
+
+            <Button
+                android:id="@+id/moreCommentsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="0.10"
+                android:backgroundTint="#E5E5E5"
+                android:onClick="moreComments"
+                android:textColor="#7D7D7D"
+                android:text="@string/see_more_button"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_singleComment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/lv_singleComment"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-
 </LinearLayout>
+</ScrollView>

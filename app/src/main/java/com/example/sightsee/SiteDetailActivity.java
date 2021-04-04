@@ -2,10 +2,12 @@ package com.example.sightsee;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Site;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -35,6 +39,13 @@ public class SiteDetailActivity extends AppCompatActivity {
         String address = (String) getIntent().getExtras().get("address");
         int imageId = (Integer) getIntent().getExtras().get("image");
 
+        LinearLayout expanded_site_detail = findViewById(R.id.expanded_site_background);
+        if (siteId % 2 == 0) {
+            expanded_site_detail.setBackgroundColor(Color.parseColor("#1485C5"));
+        }
+        else {
+            expanded_site_detail.setBackgroundColor(Color.parseColor("#90CF3F"));
+        }
         ImageView photo = findViewById(R.id.siteImage);
         photo.setImageResource(imageId);
 //        photo.setContentDescription(food.toString());
@@ -63,8 +74,6 @@ public class SiteDetailActivity extends AppCompatActivity {
         } else {
             // If no comments for this site (NOTE: No errors thrown if no comments)
         }
-
-
     }
 
     public void moreComments(View view) {
