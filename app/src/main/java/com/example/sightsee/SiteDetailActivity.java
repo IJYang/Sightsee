@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Promotion;
+import com.example.sightsee.Models.PromotionActivity;
 import com.example.sightsee.Models.Site;
 
 import java.lang.reflect.Array;
@@ -83,6 +84,12 @@ public class SiteDetailActivity extends AppCompatActivity {
 
     public void moreComments(View view) {
         Intent intent = new Intent(SiteDetailActivity.this, CommentsActivity.class);
+        intent.putExtra("siteId", String.valueOf(siteId));
+        startActivity(intent);
+    }
+
+    public void morePromotions(View view) {
+        Intent intent = new Intent(SiteDetailActivity.this, PromotionActivity.class);
         intent.putExtra("siteId", String.valueOf(siteId));
         startActivity(intent);
     }

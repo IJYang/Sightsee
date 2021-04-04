@@ -13,13 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="14pt"
+        android:textSize="10pt"
         />
 
     <ImageView
         android:id="@+id/iv_promoPicture"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/qr_code"
+        app:srcCompat="@drawable/qr_code2"
         />
 </LinearLayout>
