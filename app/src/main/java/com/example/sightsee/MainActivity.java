@@ -22,7 +22,11 @@ import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Site;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<Site> siteList;
     TextView tvLogout;
     NavigationView navigationView;
+    DatabaseReference databaseCases;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +73,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 return true;
             }
+        });
+
+        databaseCases = FirebaseDatabase.getInstance().getReference();
+        databaseCases.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot caseSnapshot: dataSnapshot.getChildren()) {
+                    DataSnapshot test = dataSnapshot.child("sites");
+                    System.out.println("hello!");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
 

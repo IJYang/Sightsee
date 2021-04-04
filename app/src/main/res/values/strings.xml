@@ -15,6 +15,7 @@
     <string name="user_name">Inseob Yang A00931993</string>
     <string name="see_more_button">See More</string>
     <string name="tv_comments">Comments</string>
+    <string name="add_location">Add a Location</string>
 
     <!-- Comment List -->
     <string name="tv_username">Username: \u0020</string>
