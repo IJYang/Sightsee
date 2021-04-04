@@ -5,45 +5,34 @@ import com.example.sightsee.R;
 import java.util.ArrayList;
 
 public class Comment {
-    private int id;
     private int siteId;
-    private String username;
-    private float rating;
-    private String reviewText;
-    private int userPictureResourceId;
-
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    private int userId;
+    private int rating;
+    private String message;
 
     public int getSiteId() { return siteId; }
     public void setSiteId(int siteId) { this.siteId = siteId; }
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public int getUserId() { return userId; }
+    public void setUserId(String username) { this.userId = userId; }
 
-    public float getRating() { return rating; }
-    public void setRating(float rating) { this.rating = rating; }
+    public int getRating() { return rating; }
+    public void setRating(int rating) { this.rating = rating; }
 
-    public String getReviewText() { return reviewText; }
-    public void setReviewText(String reviewText) { this.reviewText = reviewText; }
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
 
-    public int getUserPictureResourceId() { return userPictureResourceId; }
-    public void setUserPictureResourceId(int userPictureResourceId) {
-        this.userPictureResourceId = userPictureResourceId;
-    }
-
-    public Comment(int id, int siteId, String username, float rating, String reviewText, int userPictureResourceId) {
-        this.id = id;
-        this.username = username;
+    public Comment(int siteId, int userId, int rating, String message) {
+        this.siteId = siteId;
+        this.userId = userId;
         this.rating = rating;
-        this.reviewText = reviewText;
-        this.userPictureResourceId = userPictureResourceId;
+        this.message = message;
     }
 
     public static ArrayList<Comment> get_test_comments() {
         ArrayList<Comment> comment_list = new ArrayList<>();
-        Comment c1 = new Comment(0, 0, "TaylorSwiftFan42", (float) 3.30, "review 1 hello", R.drawable.stock_profile_picture
-                );
+        Comment c1 = new Comment(2, 0, 3, "review 1 hello");
+
         comment_list.add(c1);
         return comment_list;
     }
