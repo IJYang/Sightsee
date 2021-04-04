@@ -64,7 +64,6 @@ public class SiteDetailActivity extends AppCompatActivity {
             // If no comments for this site (NOTE: No errors thrown if no comments)
         }
 
-
     }
 
     public void moreComments(View view) {
