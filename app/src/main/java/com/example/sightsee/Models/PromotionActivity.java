@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.example.sightsee.PromotionAdapter;
 import com.example.sightsee.R;
 
 import java.util.ArrayList;

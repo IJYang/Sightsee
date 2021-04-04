@@ -8,6 +8,7 @@
     tools:context=".CommentFragment">
 
     <TextView
+        android:id="@+id/tv_promoTitle"
         android:text="@string/tv_promo_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

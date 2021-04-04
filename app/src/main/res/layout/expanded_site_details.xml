@@ -53,10 +53,10 @@
     <ListView
         android:id="@+id/lv_singleComment"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="200dp"/>
 
     <ListView
         android:id="@+id/lv_singlePromotion"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="200dp"/>
 </LinearLayout>
