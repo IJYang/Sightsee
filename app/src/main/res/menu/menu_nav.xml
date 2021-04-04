@@ -7,9 +7,9 @@
             android:title="@string/profile"
             android:checked="false"/>
         <item
-            android:id="@+id/filter"
+            android:id="@+id/add_location"
             android:icon="@android:drawable/ic_dialog_info"
-            android:title="@string/filter"
+            android:title="@string/add_location"
             android:checked="false"/>
         <item
             android:id="@+id/nav_logout"
