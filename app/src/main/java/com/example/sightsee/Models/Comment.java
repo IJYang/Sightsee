@@ -31,9 +31,9 @@ public class Comment {
 
     public static ArrayList<Comment> get_test_comments() {
         ArrayList<Comment> comment_list = new ArrayList<>();
-        Comment c1 = new Comment(2, 0, 3, "review 1 hello");
-
+        Comment c1 = new Comment(0, 0, 3, "review 1 hello");
         comment_list.add(c1);
+
         return comment_list;
     }
 

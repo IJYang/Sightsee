@@ -10,15 +10,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
+import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Site;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
     private ListView lv;
     ArrayList<Site> siteList;
     TextView tvLogout;
+    public static ArrayList<Comment> commentList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,5 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 }
