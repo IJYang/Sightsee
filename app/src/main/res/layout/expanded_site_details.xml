@@ -45,12 +45,9 @@
             android:text="See More" />
     </LinearLayout>
 
-    <fragment
-        android:id="@+id/siteCommentFragment"
-        android:name="com.example.sightsee.CommentFragment"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-
+    <ListView
+        android:id="@+id/lv_singleComment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -7,6 +7,8 @@ import android.widget.ListView;
 import com.example.sightsee.Models.Comment;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommentsActivity extends AppCompatActivity {
 
@@ -23,8 +25,12 @@ public class CommentsActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         siteId = (extras != null) ? (Integer.parseInt(extras.getString("siteId"))) : null;
 
+        List<Comment> fullCommentList = Comment.get_test_comments().stream()
+                .filter(comment -> comment.getSiteId() == siteId)
+                .collect(Collectors.toList());
+        commentList = (ArrayList<Comment>) fullCommentList;
+
         lv = findViewById(R.id.commentList);
-        commentList = Comment.get_test_comments();
         CommentAdapter adapter = new CommentAdapter(CommentsActivity.this, commentList);
         lv.setAdapter(adapter);
 

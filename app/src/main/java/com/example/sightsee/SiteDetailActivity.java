@@ -6,11 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Site;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SiteDetailActivity extends AppCompatActivity {
 
@@ -37,6 +45,26 @@ public class SiteDetailActivity extends AppCompatActivity {
 
         TextView addresstv = findViewById(R.id.siteAddress);
         addresstv.setText("Address: " + address);
+
+
+        // Set up the single comment, sorted by highest rating
+        List<Comment> temp = Comment.get_test_comments().stream()
+                .filter(comment -> comment.getSiteId() == siteId)
+                .sorted(Comparator.comparingInt(Comment::getRating).reversed())
+                .collect(Collectors.toList());
+
+        // Inflate and display only the highest rated comment if there is a comment
+        if (temp.size() > 0) {
+            ListView lvCommentList = findViewById(R.id.lv_singleComment);
+            ArrayList<Comment> onlyComment = new ArrayList<Comment>(temp.subList(0, 1));
+            CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, onlyComment);
+            lvCommentList.setAdapter(adapter);
+
+        } else {
+            // If no comments for this site (NOTE: No errors thrown if no comments)
+        }
+
+
     }
 
     public void moreComments(View view) {

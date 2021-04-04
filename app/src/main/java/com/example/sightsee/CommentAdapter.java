@@ -38,12 +38,14 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         // Get the views
         TextView tv_username = convertView.findViewById(R.id.tvCommentUsername);
         TextView tv_rating = convertView.findViewById(R.id.tvCommentRating);
+        TextView tv_date = convertView.findViewById(R.id.tvCommentDate);
         TextView tv_message = convertView.findViewById(R.id.tvCommentMessage);
 
         // Inflate views with data
         // TODO: Fill with Firebase Comment Data
         tv_username.setText("CommentAdapter - userID: " + Integer.valueOf(comment.getUserId()));
         tv_rating.setText(String.valueOf(comment.getRating()));
+        tv_date.setText(comment.getDate().toString());
         tv_message.setText(comment.getMessage());
 
         return convertView;

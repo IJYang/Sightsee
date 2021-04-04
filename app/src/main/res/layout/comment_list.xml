@@ -23,19 +23,27 @@
         <TextView
             android:id="@+id/tvCommentUsername"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Fragment Username" />
+            android:layout_height="25dp"
+            android:text="Username" />
+
+        <TextView
+            android:id="@+id/tvCommentDate"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Date" />
+
+
         <TextView
             android:id="@+id/tvCommentRating"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Fragment Rating" />
+            android:layout_height="25dp"
+            android:text="Rating" />
 
         <TextView
             android:id="@+id/tvCommentMessage"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:text="Fragment Comment " />
+            android:text="Comment " />
 
 
     </LinearLayout>
