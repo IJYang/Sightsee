@@ -1,5 +1,7 @@
 package com.example.sightsee.Models;
 
+import com.example.sightsee.R;
+
 import java.util.ArrayList;
 
 public class Comment {
@@ -40,12 +42,10 @@ public class Comment {
 
     public static ArrayList<Comment> get_test_comments() {
         ArrayList<Comment> comment_list = new ArrayList<>();
-        Comment c1 = new Comment(0, 0, "TaylorSwiftFan42", 3.3,
-                "review 1 hello",
+        Comment c1 = new Comment(0, 0, "TaylorSwiftFan42", (float) 3.30, "review 1 hello", R.drawable.stock_profile_picture
                 );
-
-
-
+        comment_list.add(c1);
+        return comment_list;
     }
 
 
