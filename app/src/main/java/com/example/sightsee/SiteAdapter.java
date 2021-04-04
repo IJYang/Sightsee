@@ -35,10 +35,10 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         // Lookup view for data population
         LinearLayout site_background = convertView.findViewById(R.id.site_background);
         if (position % 2 == 0) {
-            site_background.setBackgroundColor(Color.parseColor("#1485C5"));
+            site_background.setBackgroundColor(Color.parseColor("#CB0093D7"));
         }
         else {
-            site_background.setBackgroundColor(Color.parseColor("#90CF3F"));
+            site_background.setBackgroundColor(Color.parseColor("#9C24C82A"));
         }
         ImageView site_image = convertView.findViewById(R.id.site_image);
         TextView site_name = convertView.findViewById(R.id.site_name);
