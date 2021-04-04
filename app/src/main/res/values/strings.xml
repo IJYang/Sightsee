@@ -25,5 +25,7 @@
     <string name="filter">Filter</string>
     <string name="detail_header">Details</string>
 
+    <!-- Promotion List-->
+    <string name="tv_promo_title">Promotions</string>
 
 </resources>

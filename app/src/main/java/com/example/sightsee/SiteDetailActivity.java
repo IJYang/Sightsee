@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sightsee.Models.Comment;
+import com.example.sightsee.Models.Promotion;
+import com.example.sightsee.Models.PromotionActivity;
 import com.example.sightsee.Models.Site;
 
 import org.w3c.dom.Text;
@@ -75,10 +77,31 @@ public class SiteDetailActivity extends AppCompatActivity {
         } else {
             // If no comments for this site (NOTE: No errors thrown if no comments)
         }
+
+        // Filter promos, get a single one and inflate the listview
+        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
+                .filter(promotion -> promotion.getSiteId() == siteId)
+                .collect(Collectors.toList());
+
+        if (fullPromoList.size() > 0) {
+            ListView lvPromoList = findViewById(R.id.lv_singlePromotion);
+            ArrayList<Promotion> onlyPromotion = new ArrayList<Promotion>(fullPromoList.subList(0, 1));
+            PromotionAdapter promotionAdapter = new PromotionAdapter(SiteDetailActivity.this, onlyPromotion);
+            lvPromoList.setAdapter(promotionAdapter);
+
+        } else {
+            // If no promos
+        }
     }
 
     public void moreComments(View view) {
         Intent intent = new Intent(SiteDetailActivity.this, CommentsActivity.class);
+        intent.putExtra("siteId", String.valueOf(siteId));
+        startActivity(intent);
+    }
+
+    public void morePromotions(View view) {
+        Intent intent = new Intent(SiteDetailActivity.this, PromotionActivity.class);
         intent.putExtra("siteId", String.valueOf(siteId));
         startActivity(intent);
     }
