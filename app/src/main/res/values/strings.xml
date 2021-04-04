@@ -9,4 +9,8 @@
     <string name="password">Password</string>
     <string name="login_title">Login</string>
     <string name="create_new_account">Create account</string>
+    <string name="nav_open_drawer">Open Navigation drawer</string>
+    <string name="nav_close_drawer">Close Navigation drawer</string>
+    <string name="drawer_header">Nav Drawer Lab</string>
+    <string name="user_name">Inseob Yang A00931993</string>
 </resources>
