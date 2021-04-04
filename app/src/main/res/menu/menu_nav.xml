@@ -2,9 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single" >
         <item
+            android:id="@+id/profile"
+            android:icon="@android:drawable/picture_frame"
+            android:title="@string/profile"
+            android:checked="false"/>
+        <item
+            android:id="@+id/filter"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/filter"
+            android:checked="false"/>
+        <item
             android:id="@+id/nav_logout"
             android:icon="@android:drawable/ic_menu_compass"
             android:title="@string/logout"
-            android:checked="true"/>
+            android:checked="false"/>
     </group>
 </menu>

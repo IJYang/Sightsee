@@ -58,6 +58,16 @@
                     android:textColor="@color/white"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/site_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

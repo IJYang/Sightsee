@@ -43,11 +43,13 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         ImageView site_image = convertView.findViewById(R.id.site_image);
         TextView site_name = convertView.findViewById(R.id.site_name);
         TextView site_type = convertView.findViewById(R.id.site_type);
+        TextView site_price = convertView.findViewById(R.id.site_price);
 
         // Populate the data into the template view using the data object
         site_image.setImageResource(site.getImageResourceId());
         site_name.setText(site.getName());
-        site_type.setText(site.getType());
+        site_type.setText("Type: " + site.getType());
+        site_price.setText("Cost: " + site.getPrice());
 
         // Return the completed view to render on screen
         return convertView;
