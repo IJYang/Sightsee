@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,7 @@ public class SiteDetailActivity extends AppCompatActivity {
         String address = (String) getIntent().getExtras().get("address");
         int imageId = (Integer) getIntent().getExtras().get("image");
 
-        LinearLayout expanded_site_detail = findViewById(R.id.expanded_site_background);
+        ScrollView expanded_site_detail = findViewById(R.id.expanded_site_background);
         if (siteId % 2 == 0) {
             expanded_site_detail.setBackgroundColor(Color.parseColor("#1485C5"));
         }
