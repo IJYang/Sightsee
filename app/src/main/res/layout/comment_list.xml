@@ -24,26 +24,26 @@
             android:id="@+id/tvCommentUsername"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="Username" />
+            android:text="@string/tv_username" />
 
         <TextView
             android:id="@+id/tvCommentDate"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="Date" />
+            android:text="@string/tv_date" />
 
 
         <TextView
             android:id="@+id/tvCommentRating"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:text="Rating" />
+            android:text="@string/tv_rating" />
 
         <TextView
             android:id="@+id/tvCommentMessage"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:text="Comment " />
+            android:text="@string/tv_comment" />
 
 
     </LinearLayout>

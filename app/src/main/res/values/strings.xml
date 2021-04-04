@@ -13,4 +13,14 @@
     <string name="nav_close_drawer">Close Navigation drawer</string>
     <string name="drawer_header">Nav Drawer Lab</string>
     <string name="user_name">Inseob Yang A00931993</string>
+    <string name="see_more_button">See More</string>
+    <string name="tv_comments">Comments</string>
+
+    <!-- Comment List -->
+    <string name="tv_username">Username: \u0020</string>
+    <string name="tv_date">Date: \u0020</string>
+    <string name="tv_rating">Rating: \u0020</string>
+    <string name="tv_comment">Comment: \u0020</string>
+
+
 </resources>
