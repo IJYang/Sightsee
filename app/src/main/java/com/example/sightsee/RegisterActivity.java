@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -77,10 +78,17 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            CheckBox admin_checkbox = findViewById(R.id.admin_checkbox);
+
 
                             databaseCases = FirebaseDatabase.getInstance().getReference("users");
                             DatabaseReference newUserRef = databaseCases.push();
-                            newUserRef.setValue(new User(email, "default"));
+                            if (admin_checkbox.isChecked()) {
+                                newUserRef.setValue(new User(email, "admin"));
+                            }
+                            else {
+                                newUserRef.setValue(new User(email, "default"));
+                            }
                             // String key = databaseCases.push().getKey();
 
                             Toast.makeText(com.example.sightsee.RegisterActivity.this, "User Created", Toast.LENGTH_LONG).show();
