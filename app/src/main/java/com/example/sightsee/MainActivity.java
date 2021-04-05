@@ -112,16 +112,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        tvLogout = findViewById(R.id.tvLogout);
-        tvLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut(); // logout
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
-            }
-        });
-
     }
 
     @Override
