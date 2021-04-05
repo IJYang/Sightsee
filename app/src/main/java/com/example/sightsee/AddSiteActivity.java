@@ -126,6 +126,8 @@ public class AddSiteActivity extends AppCompatActivity {
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
                             Toast.makeText(AddSiteActivity.this, "Site added!", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+
                         }
                     });
                 }

@@ -98,9 +98,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             }
                         });
+                    drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.profile) {
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    drawer.closeDrawer(GravityCompat.START);
                 }
                 return true;
             }
