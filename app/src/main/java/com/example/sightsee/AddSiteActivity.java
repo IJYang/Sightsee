@@ -1,15 +1,32 @@
 package com.example.sightsee;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.example.sightsee.Models.Upload;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class AddSiteActivity extends AppCompatActivity {
 
@@ -23,6 +40,9 @@ public class AddSiteActivity extends AppCompatActivity {
     private Button mButtonAddNewSite;
     private ImageView mImageViewSiteImage;
     private Uri mImageUri;
+
+    private StorageReference mStorageRef;
+    private DatabaseReference mDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +59,10 @@ public class AddSiteActivity extends AppCompatActivity {
 
         mImageViewSiteImage = findViewById(R.id.site_image_display);
 
+        mStorageRef = FirebaseStorage.getInstance().getReference("image_uploads");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("sites");
+
+
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +74,7 @@ public class AddSiteActivity extends AppCompatActivity {
         mButtonAddNewSite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                uploadFile();
             }
         });
 
@@ -72,5 +96,44 @@ public class AddSiteActivity extends AppCompatActivity {
             mImageUri = data.getData();
             mImageViewSiteImage.setImageURI(mImageUri);
         }
+    }
+
+    private String getFileExtension(Uri uri) {
+        // Gets file extension from the image
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void uploadFile() {
+        if (mImageUri != null) {
+            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + "." +
+                    getFileExtension(mImageUri));
+            Task uploadTask = fileReference.putFile(mImageUri);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> firebaseUri = taskSnapshot.getStorage().getDownloadUrl();
+                    firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Upload upload = new Upload(mEditTextSiteName.getText().toString().trim(),
+                                    uri.toString(),
+                                    mEditTextSiteAddress.getText().toString().trim(),
+                                    mEditTextSiteType.getText().toString().trim(),
+                                    mEditTextSitePrice.getText().toString().trim());
+                            String uploadId = mDatabaseRef.push().getKey();
+                            mDatabaseRef.child(uploadId).setValue(upload);
+                            Toast.makeText(AddSiteActivity.this, "Site added!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
