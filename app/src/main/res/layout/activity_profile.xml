@@ -8,19 +8,14 @@
     android:orientation="vertical"
     tools:context=".ProfileActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="#2E2E2E"
-        app:titleTextColor="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </androidx.appcompat.widget.Toolbar>
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="User Profile"
+        android:textColor="@color/white"/>
 
     <ImageView
         android:layout_width="match_parent"
