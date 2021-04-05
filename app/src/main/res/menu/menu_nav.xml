@@ -3,17 +3,17 @@
     <group android:checkableBehavior="single" >
         <item
             android:id="@+id/profile"
-            android:icon="@android:drawable/picture_frame"
+            android:icon="@drawable/ic_baseline_account_circle_24"
             android:title="@string/profile"
             android:checked="false"/>
         <item
             android:id="@+id/add_location"
-            android:icon="@android:drawable/ic_dialog_info"
+            android:icon="@drawable/ic_baseline_add_location_24"
             android:title="@string/add_location"
             android:checked="false"/>
         <item
             android:id="@+id/nav_logout"
-            android:icon="@android:drawable/ic_menu_compass"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
             android:title="@string/logout"
             android:checked="false"/>
     </group>
