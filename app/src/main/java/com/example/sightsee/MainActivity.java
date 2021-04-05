@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,11 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Site;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        lv = findViewById(R.id.site_list);
+        siteList = new ArrayList<Site>();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,11 +57,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         toggle.syncState();
-
-        lv = findViewById(R.id.site_list);
-        siteList = Site.get_test_sites();
-        SiteAdapter adapter = new SiteAdapter(MainActivity.this, siteList);
-        lv.setAdapter(adapter);
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -90,14 +83,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         databaseCases.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot caseSnapshot: dataSnapshot.getChildren()) {
-                    DataSnapshot test = dataSnapshot.child("sites");
-                    System.out.println("hello!");
+                siteList.clear();
+                for (DataSnapshot caseSnapshot: dataSnapshot.child("sites").getChildren()) {
+                    Site site = caseSnapshot.getValue(Site.class);
+                    siteList.add(site);
                 }
+                SiteAdapter adapter = new SiteAdapter(MainActivity.this, siteList);
+                lv.setAdapter(adapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
+
+        SiteAdapter adapter = new SiteAdapter(MainActivity.this, siteList);
+        lv.setAdapter(adapter);
 
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,21 +104,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this, SiteDetailActivity.class);
                 Site site = siteList.get(i);
-                intent.putExtra("id", site.getId());
                 intent.putExtra("name", site.getName());
                 intent.putExtra("address", site.getAddress());
-                intent.putExtra("image", site.getImageResourceId());
+                intent.putExtra("imageUrl", site.getImageUrl());
+                intent.putExtra("position", i);
                 startActivity(intent);
-            }
-        });
-
-        tvLogout = findViewById(R.id.tvLogout);
-        tvLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut(); // logout
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
             }
         });
 
