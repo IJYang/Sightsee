@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 }
+                else if (id == R.id.add_location) {
+                    startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                }
                 return true;
             }
         });

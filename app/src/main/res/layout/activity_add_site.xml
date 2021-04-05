@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddSiteActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add an Attraction"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/site_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Site Name"/>
+    <EditText
+        android:id="@+id/site_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Site Type"/>
+    <EditText
+        android:id="@+id/site_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Site Address"/>
+    <EditText
+        android:id="@+id/site_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Site Price"/>
+    <Button
+        android:id="@+id/add_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Image"/>
+
+    <Button
+        android:id="@+id/add_new_site_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/site_image_display"/>
+
+
+</LinearLayout>
