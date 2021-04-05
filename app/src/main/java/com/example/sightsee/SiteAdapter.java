@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.sightsee.Models.Site;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,13 +42,20 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         else {
             site_background.setBackgroundColor(Color.parseColor("#90CF3F"));
         }
+
         ImageView site_image = convertView.findViewById(R.id.site_image);
         TextView site_name = convertView.findViewById(R.id.site_name);
         TextView site_type = convertView.findViewById(R.id.site_type);
         TextView site_price = convertView.findViewById(R.id.site_price);
 
         // Populate the data into the template view using the data object
-        site_image.setImageResource(site.getImageResourceId());
+
+
+        //Glide.with(_context).load(site.getImageUrl()).into(site_image);
+        Picasso.get()
+                .load(site.getImageUrl())
+                .into(site_image);
+        //site_image.setImageResource(site.getImageUrl());
         site_name.setText(site.getName());
         site_type.setText("Type: " + site.getType());
         site_price.setText("Cost: " + site.getPrice());
