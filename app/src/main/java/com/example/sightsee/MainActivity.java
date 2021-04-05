@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ListView lv;
     ArrayList<Site> siteList;
     TextView tvLogout;
+    TextView tvProfile;
     NavigationView navigationView;
     DatabaseReference databaseCases;
     private FirebaseAuth mAuth;
@@ -69,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 else if (id == R.id.add_location) {
                     startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                }
+                else if (id == R.id.profile) {
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 }
                 return true;
             }
