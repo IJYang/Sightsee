@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     DatabaseReference databaseCases;
     private FirebaseAuth mAuth;
+    ArrayList<User> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         lv = findViewById(R.id.site_list);
         siteList = new ArrayList<Site>();
+        userList = new ArrayList<User>();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,6 +64,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         toggle.syncState();
 
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference test = mDatabase.child("users");
+        String user_email;
+        test.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot item_snapshot:dataSnapshot.getChildren()) {
+                    User user = item_snapshot.getValue(User.class);
+                    userList.add(user);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -73,38 +93,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     finish();
                 }
                 else if (id == R.id.add_location) {
-                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                    DatabaseReference test = mDatabase.child("users");
-                    test.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for(DataSnapshot item_snapshot:dataSnapshot.getChildren()) {
-                                User user = item_snapshot.getValue(User.class);
-                                String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-                                if (user.user_email.equals(user_email)) {
-                                    String user_type = user.user_type;
-                                    if (user_type.equals("admin")) {
-                                        startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
-                                    }
-                                    else {
-                                        Toast.makeText(MainActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
+                    String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                    for (User user: userList) {
+                        if (user.user_email.equals(user_email)) {
+                            String user_type = user.user_type;
+                            if (user_type.equals("admin") && id == R.id.add_location) {
+                                startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
                             }
                         }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
+                    }
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.profile) {
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     drawer.closeDrawer(GravityCompat.START);
                 }
-                return true;
+                return false;
             }
         });
 
