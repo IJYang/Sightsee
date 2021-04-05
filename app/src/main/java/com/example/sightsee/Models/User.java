@@ -8,4 +8,8 @@ public class User {
         this.user_email = email;
         this.user_type = user_type;
     }
+
+    public User() {
+        // required empty constructor
+    }
 }

@@ -16,8 +16,10 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sightsee.Models.Site;
+import com.example.sightsee.Models.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -71,7 +73,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     finish();
                 }
                 else if (id == R.id.add_location) {
-                    startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                    DatabaseReference test = mDatabase.child("users");
+                    test.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot item_snapshot:dataSnapshot.getChildren()) {
+                                User user = item_snapshot.getValue(User.class);
+                                String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                                if (user.user_email.equals(user_email)) {
+                                    String user_type = user.user_type;
+                                    if (user_type.equals("admin")) {
+                                        startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                                    }
+                                    else {
+                                        Toast.makeText(MainActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                 }
                 else if (id == R.id.profile) {
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
