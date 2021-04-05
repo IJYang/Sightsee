@@ -8,11 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.example.sightsee.Models.Comment;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -43,9 +39,9 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
 
         // Inflate views with data
         // TODO: Fill with Firebase Comment Data
-        tv_username.setText("CommentAdapter - userID: " + Integer.valueOf(comment.getUserId()));
+        tv_username.setText("CommentAdapter - userID: " + comment.getUserId());
         tv_rating.setText(String.valueOf(comment.getRating()));
-        tv_date.setText(comment.getDate().toString());
+        tv_date.setText(comment.getDateAdded().toString());
         tv_message.setText(comment.getMessage());
 
         return convertView;

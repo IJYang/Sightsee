@@ -29,9 +29,11 @@ public class CommentsActivity extends AppCompatActivity {
         siteId = (extras != null) ? (Integer.parseInt(extras.getString("siteId"))) : null;
 
         List<Comment> fullCommentList = Comment.get_test_comments().stream()
-                .filter(comment -> comment.getSiteId() == siteId)
+                .filter(comment -> comment.getSite_id() == siteId)
                 .collect(Collectors.toList());
         commentList = (ArrayList<Comment>) fullCommentList;
+
+
 
         RelativeLayout rl = findViewById(R.id.comments_background);
         lv = findViewById(R.id.commentList);

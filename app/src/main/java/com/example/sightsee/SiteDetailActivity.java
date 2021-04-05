@@ -4,6 +4,8 @@ package com.example.sightsee;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.service.autofill.Dataset;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,25 +14,39 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Promotion;
 import com.example.sightsee.Models.PromotionActivity;
 import com.example.sightsee.Models.Site;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SiteDetailActivity extends AppCompatActivity {
 
     private Button moreCommentsBtn;
     int siteId;
+    DatabaseReference commentsDatabase;
+    DatabaseReference promotionsDatabase;
+    DatabaseReference databaseReference;
+    List<Comment>fbCommentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +76,15 @@ public class SiteDetailActivity extends AppCompatActivity {
         TextView addresstv = findViewById(R.id.siteAddress);
         addresstv.setText("Address: " + address);
 
+        loadComments();
+        /***************************************/
+//        promotionsDatabase = FirebaseDatabase.getInstance().getReference("promotions");
 
+
+        /***************************************/
+
+
+        /**
         // Set up the single comment, sorted by highest rating
         List<Comment> temp = Comment.get_test_comments().stream()
                 .filter(comment -> comment.getSiteId() == siteId)
@@ -77,6 +101,7 @@ public class SiteDetailActivity extends AppCompatActivity {
         } else {
             // If no comments for this site (NOTE: No errors thrown if no comments)
         }
+         **/
 
         // Filter promos, get a single one and inflate the listview
         List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
@@ -92,6 +117,42 @@ public class SiteDetailActivity extends AppCompatActivity {
         } else {
             // If no promos
         }
+    }
+
+    public void loadComments() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        fbCommentList = new ArrayList<Comment>();
+        DatabaseReference commentsRef = database.getReference("comments");
+        commentsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot.getChildrenCount());
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Get each individual value for the comment then make the comment object
+
+                    // TODO: Adjust this so site_id is a string that retrieves actual data from FB
+                    String date_added = snapshot.child("date_added").getValue().toString();
+                    String message = snapshot.child("message").getValue().toString();
+                    Long longRating = (Long) snapshot.child("rating").getValue();
+                    int rating = longRating.intValue();
+                    int site_id = Integer.valueOf(snapshot.child("site_id").getValue().toString());
+                    String user_id = snapshot.child("user_id").getValue().toString();
+
+                    Comment comment = new Comment(date_added, message, rating, site_id, user_id);
+                    fbCommentList.add(comment);
+                }
+
+                ListView lvCommentList = findViewById(R.id.lv_singleComment);
+                ArrayList<Comment> onlyComment = new ArrayList<Comment>(fbCommentList.subList(0, 1));
+                CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, onlyComment);
+                lvCommentList.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
     }
 
     public void moreComments(View view) {
