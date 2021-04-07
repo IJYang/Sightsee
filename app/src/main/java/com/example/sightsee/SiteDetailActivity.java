@@ -47,6 +47,7 @@ public class SiteDetailActivity extends AppCompatActivity {
     DatabaseReference promotionsDatabase;
     DatabaseReference databaseReference;
     List<Comment>fbCommentList;
+    List<Promotion> fbPromoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,20 @@ public class SiteDetailActivity extends AppCompatActivity {
 
         loadComments();
         /***************************************/
+//        fbPromoList = new ArrayList<Promotion>();
 //        promotionsDatabase = FirebaseDatabase.getInstance().getReference("promotions");
+//        promotionsDatabase.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    Promotion promo = snapshot.getValue(Promotion.class);
+//                    fbPromoList.add(promo);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) { }
+//        });
 
 
         /***************************************/
@@ -104,19 +118,19 @@ public class SiteDetailActivity extends AppCompatActivity {
          **/
 
         // Filter promos, get a single one and inflate the listview
-        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
-                .filter(promotion -> promotion.getSiteId() == siteId)
-                .collect(Collectors.toList());
-
-        if (fullPromoList.size() > 0) {
-            ListView lvPromoList = findViewById(R.id.lv_singlePromotion);
-            ArrayList<Promotion> onlyPromotion = new ArrayList<Promotion>(fullPromoList.subList(0, 1));
-            PromotionAdapter promotionAdapter = new PromotionAdapter(SiteDetailActivity.this, onlyPromotion);
-            lvPromoList.setAdapter(promotionAdapter);
-
-        } else {
-            // If no promos
-        }
+//        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
+//                .filter(promotion -> promotion.getSiteId() == siteId)
+//                .collect(Collectors.toList());
+//
+//        if (fullPromoList.size() > 0) {
+//            ListView lvPromoList = findViewById(R.id.lv_singlePromotion);
+//            ArrayList<Promotion> onlyPromotion = new ArrayList<Promotion>(fullPromoList.subList(0, 1));
+//            PromotionAdapter promotionAdapter = new PromotionAdapter(SiteDetailActivity.this, onlyPromotion);
+//            lvPromoList.setAdapter(promotionAdapter);
+//
+//        } else {
+//            // If no promos
+//        }
     }
 
     public void loadComments() {
@@ -126,7 +140,6 @@ public class SiteDetailActivity extends AppCompatActivity {
         commentsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot.getChildrenCount());
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Get each individual value for the comment then make the comment object
 

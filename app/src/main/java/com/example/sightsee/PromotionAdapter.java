@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.squareup.picasso.Picasso;
 import com.example.sightsee.Models.Promotion;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PromotionAdapter extends ArrayAdapter<Promotion> {
@@ -37,7 +36,10 @@ public class PromotionAdapter extends ArrayAdapter<Promotion> {
         ImageView iv_promoPicture = convertView.findViewById(R.id.iv_promoPicture);
 
         tv_promoTitle.setText(promotion.getPromotionTitle());
-        iv_promoPicture.setImageResource(promotion.getImageResourceId());
+//        iv_promoPicture.setImageResource(promotion.getImage_url());
+        Picasso.get()
+                .load(promotion.getImage_url())
+                .into(iv_promoPicture);
 
         return convertView;
     }
