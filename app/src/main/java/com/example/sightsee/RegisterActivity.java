@@ -60,17 +60,14 @@ public class RegisterActivity extends AppCompatActivity {
                     editEmail.setError("Email is required");
                     return;
                 }
-
                 if (TextUtils.isEmpty(password)) {
                     editEmail.setError("Password is required");
                     return;
                 }
-
                 if (password.length() <6) {
                     editEmail.setError("Password must be >= 6 characters.");
                     return;
                 }
-
                 progressBar.setVisibility(View.VISIBLE);
 
                 // register user
@@ -79,8 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             CheckBox admin_checkbox = findViewById(R.id.admin_checkbox);
-
-
                             databaseCases = FirebaseDatabase.getInstance().getReference("users");
                             DatabaseReference newUserRef = databaseCases.push();
                             if (admin_checkbox.isChecked()) {
@@ -99,9 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
-
             }
-
         });
 
         tvLogin.setOnClickListener(new View.OnClickListener() {

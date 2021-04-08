@@ -127,12 +127,10 @@ public class AddSiteActivity extends AppCompatActivity {
                             mDatabaseRef.child(uploadId).setValue(upload);
                             Toast.makeText(AddSiteActivity.this, "Site added!", Toast.LENGTH_SHORT).show();
                             onBackPressed();
-
                         }
                     });
                 }
             });
-
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }

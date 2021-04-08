@@ -138,8 +138,17 @@
         <ListView
             android:id="@+id/lv_singlePromotion"
             android:layout_width="fill_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin = "10dp"
+        android:hint="Enter your comment..."
+        android:textSize="14dp"
+        android:gravity="start"
+        android:background="@color/white">
+    </EditText>
 </LinearLayout>
 </ScrollView>

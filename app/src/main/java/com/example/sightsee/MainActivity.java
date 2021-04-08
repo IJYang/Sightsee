@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return false;
             }
         });
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
         databaseCases = FirebaseDatabase.getInstance().getReference();
         databaseCases.addValueEventListener(new ValueEventListener() {
