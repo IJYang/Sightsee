@@ -23,7 +23,7 @@
             android:id="@+id/commentFragmentUsername"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Fragment Username" />
+            android:text="Fragment Username"/>
         <TextView
             android:id="@+id/commentFragmentRating"
             android:layout_width="match_parent"
@@ -35,8 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:text="Fragment Comment " />
-
-
     </LinearLayout>
 
 </LinearLayout>

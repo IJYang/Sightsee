@@ -16,24 +16,39 @@
         />
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tvCommentUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_username"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvCommentUsername"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:text="@string/tv_username"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10dp"/>
-
-        <TextView
-            android:id="@+id/tvCommentMessage"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:text="@string/tv_comment"
-            android:textColor="@color/white"
-            android:layout_marginLeft="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="start"
+            android:layout_weight="0.6">
+            <TextView
+                android:id="@+id/tvCommentMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_comment"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

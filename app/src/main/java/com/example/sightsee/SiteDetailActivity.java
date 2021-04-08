@@ -152,12 +152,13 @@ public class SiteDetailActivity extends AppCompatActivity {
         String user_id = (String) getIntent().getExtras().get("user_id");
         String site_id = (String) getIntent().getExtras().get("site_id");
         String comment_text = comment_edit_text.getText().toString().trim();
+        String capitalized_user_id = user_id.substring(0, 1).toUpperCase() + user_id.substring(1);
 
         if (comment_text.trim().equals("")) {
             Toast.makeText(SiteDetailActivity.this, "No comment provided", Toast.LENGTH_SHORT).show();
         }
         else {
-            CommentUpload comment_upload = new CommentUpload(user_id.trim(),
+            CommentUpload comment_upload = new CommentUpload(capitalized_user_id.trim(),
                     site_id.trim(),
                     comment_text.trim());
             String uploadId = mDatabaseRef.push().getKey();
