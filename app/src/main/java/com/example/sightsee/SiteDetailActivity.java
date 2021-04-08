@@ -113,6 +113,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        ScrollView expanded_site_detail = findViewById(R.id.expanded_site_background);
         mMap = googleMap;
         String queried_address = (String) getIntent().getExtras().get("address");
         // Add a marker in Sydney and move the camera
@@ -121,6 +122,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
                 .position(selected_site)
                 .title("Site"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(selected_site, 10.0f));
+        expanded_site_detail.smoothScrollTo(0, 0);
     }
 
     public void loadComments() {
