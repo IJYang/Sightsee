@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/expanded_site_background">
+    android:id="@+id/expanded_site_background"
+    android:layout_marginBottom="-40dp">
 <LinearLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -27,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:text="Image" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +83,6 @@
                     android:textSize="14dp"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"/>
-
             </LinearLayout>
         </LinearLayout>
 
@@ -161,44 +162,43 @@
                 android:textSize="10sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp" />
-
         </LinearLayout>
-
         <ListView
             android:id="@+id/lv_singlePromotion"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
 
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:textSize="20dp"
-        android:text="Leave a Comment"
-        android:textColor="@color/white"/>
-    <EditText
-        android:id="@+id/comment_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin = "10dp"
-        android:hint="Enter your comment..."
-        android:textSize="14dp"
-        android:gravity="start"
-        android:background="@drawable/textbox_border">
-    </EditText>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:orientation="vertical">
-        <Button
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:text="Leave a Comment"
+            android:textColor="@color/white"/>
+        <EditText
+            android:id="@+id/comment_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin = "10dp"
+            android:hint="Enter your comment..."
+            android:textSize="14dp"
+            android:gravity="start"
+            android:background="@drawable/textbox_border">
+        </EditText>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
-            android:layout_marginRight="10dp"
-            android:onClick="submitComment">
-        </Button>
+            android:layout_gravity="right"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_marginRight="10dp"
+                android:onClick="submitComment">
+            </Button>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 </ScrollView>
