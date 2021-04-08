@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent.putExtra("user_id", user_id);
                 intent.putExtra("name", site.getName());
                 intent.putExtra("address", site.getAddress());
+                intent.putExtra("site_type", site.getType());
+                intent.putExtra("price", site.getPrice());
                 intent.putExtra("imageUrl", site.getImageUrl());
                 intent.putExtra("position", i);
                 startActivity(intent);

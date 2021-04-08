@@ -1,8 +1,11 @@
 package com.example.sightsee;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -41,22 +44,38 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class SiteDetailActivity extends AppCompatActivity {
+public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyCallback{
     private DatabaseReference mDatabaseRef;
     private DatabaseReference databaseCases;
     private Button moreCommentsBtn;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.expanded_site_details);
 
+        // GOOGLE MAPS
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        //
+
         String name = (String) getIntent().getExtras().get("name");
         String address = (String) getIntent().getExtras().get("address");
         String imageUrl = (String) getIntent().getExtras().get("imageUrl");
         int position = (Integer) getIntent().getExtras().get("position");
+        String type = (String) getIntent().getExtras().get("site_type");
+        String price = (String) getIntent().getExtras().get("price");
 
         ScrollView expanded_site_detail = findViewById(R.id.expanded_site_background);
         if (position % 2 == 0) {
@@ -81,10 +100,27 @@ public class SiteDetailActivity extends AppCompatActivity {
         nametv.setText(name);
 
         TextView addresstv = findViewById(R.id.siteAddress);
+        TextView typetv = findViewById(R.id.siteType);
+        TextView pricetv = findViewById(R.id.sitePrice);
+
         addresstv.setText("Address: " + address);
+        typetv.setText("Type: " + type);
+        pricetv.setText("Price: " + price);
 
         loadComments();
         loadPromotions();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        String queried_address = (String) getIntent().getExtras().get("address");
+        // Add a marker in Sydney and move the camera
+        LatLng selected_site = new LatLng(49.246292, -123.116226);
+        mMap.addMarker(new MarkerOptions()
+                .position(selected_site)
+                .title("Site"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(selected_site, 10.0f));
     }
 
     public void loadComments() {
@@ -166,6 +202,27 @@ public class SiteDetailActivity extends AppCompatActivity {
             Toast.makeText(SiteDetailActivity.this, "Comment added!", Toast.LENGTH_SHORT).show();
             comment_edit_text.setText("");
         }
+    }
+
+    public LatLng determineLatLngFromAddress(Context appContext, String strAddress) {
+        LatLng latLng = null;
+        Geocoder geocoder = new Geocoder(appContext, Locale.getDefault());
+        List<Address> geoResults = null;
+
+        try {
+            geoResults = geocoder.getFromLocationName(strAddress, 1);
+            while (geoResults.size()==0) {
+                geoResults = geocoder.getFromLocationName(strAddress, 1);
+            }
+            if (geoResults.size()>0) {
+                Address addr = geoResults.get(0);
+                latLng = new LatLng(addr.getLatitude(),addr.getLongitude());
+            }
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+
+        return latLng; //LatLng value of address
     }
 
 }

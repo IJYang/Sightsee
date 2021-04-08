@@ -30,13 +30,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
             <TextView
                 android:id="@+id/siteName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textColor="@color/white"
+                android:textStyle="bold"
                 android:textSize="22dp"
                 android:layout_marginLeft="10dp"/>
 
@@ -63,8 +65,36 @@
                     android:textSize="14dp"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/white"/>
+                <TextView
+                    android:id="@+id/siteType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:id="@+id/sitePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+            <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"/>
         </LinearLayout>
 
         <!-- ///// Comments ///// -->
@@ -150,7 +180,7 @@
     <EditText
         android:id="@+id/comment_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:layout_margin = "10dp"
         android:hint="Enter your comment..."
         android:textSize="14dp"
