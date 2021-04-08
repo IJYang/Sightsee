@@ -67,7 +67,11 @@ public class SiteDetailActivity extends AppCompatActivity {
         TextView addresstv = findViewById(R.id.siteAddress);
         addresstv.setText("Address: " + address);
 
+        loadComments();
+        loadPromotions();
+    }
 
+    public void loadComments() {
         // Set up the single comment, sorted by highest rating
         List<Comment> temp = Comment.get_test_comments().stream()
                 //.filter(comment -> comment.getSiteId() == siteId) // Had to comment out as i removed siteid
@@ -84,8 +88,8 @@ public class SiteDetailActivity extends AppCompatActivity {
         } else {
             // If no comments for this site (NOTE: No errors thrown if no comments)
         }
-
-        // Filter promos, get a single one and inflate the listview
+    }
+    public void loadPromotions() {
         List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
                 //.filter(promotion -> promotion.getSiteId() == siteId)
                 .collect(Collectors.toList());
@@ -100,6 +104,7 @@ public class SiteDetailActivity extends AppCompatActivity {
             // If no promos
         }
     }
+
 
     public void moreComments(View view) {
         Intent intent = new Intent(SiteDetailActivity.this, CommentsActivity.class);
