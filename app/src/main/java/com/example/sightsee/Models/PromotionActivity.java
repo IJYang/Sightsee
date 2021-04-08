@@ -25,13 +25,14 @@ public class PromotionActivity extends AppCompatActivity {
 
         // Site ID must be passed in
         Bundle extras = getIntent().getExtras();
-        siteId = (extras != null) ? (Integer.parseInt(extras.getString("siteId"))) : null;
+//        siteId = (extras != null) ? (Integer.parseInt(extras.getString("siteId"))) : null;
 
-        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
-                .filter(promotion -> promotion.getSiteId() == siteId)
-                .collect(Collectors.toList());
-        promotionArrayList = (ArrayList<Promotion>) fullPromoList;
+//        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
+//                .filter(promotion -> promotion.getSiteId() == siteId)
+//                .collect(Collectors.toList());
+//        promotionArrayList = (ArrayList<Promotion>) fullPromoList;
 
+        promotionArrayList = Promotion.get_test_promotions();
         lv = findViewById(R.id.promotion_list);
         PromotionAdapter adapter = new PromotionAdapter(PromotionActivity.this, promotionArrayList);
         lv.setAdapter(adapter);
