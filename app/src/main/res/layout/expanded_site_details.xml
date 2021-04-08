@@ -133,6 +133,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
 
+        <View
+            android:id="@+id/separator_line"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#E1E1E1" />
+
         <!--///// Promotions //////-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -168,11 +177,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"/>
+        <View
+            android:id="@+id/comments_separator_line"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#E1E1E1" />
+
+        <!--///// Comments //////-->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:textSize="20dp"
             android:text="Leave a Comment"
             android:textColor="@color/white"/>
