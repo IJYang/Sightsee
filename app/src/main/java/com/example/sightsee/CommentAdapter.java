@@ -25,6 +25,8 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         _context = context;
     }
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Activity activity = (Activity) _context;
@@ -37,16 +39,12 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
 
         // Get the views
         TextView tv_username = convertView.findViewById(R.id.tvCommentUsername);
-        TextView tv_rating = convertView.findViewById(R.id.tvCommentRating);
-        TextView tv_date = convertView.findViewById(R.id.tvCommentDate);
         TextView tv_message = convertView.findViewById(R.id.tvCommentMessage);
 
         // Inflate views with data
         // TODO: Fill with Firebase Comment Data
-        tv_username.setText("CommentAdapter - userID: " + Integer.valueOf(comment.getUserId()));
-        tv_rating.setText(String.valueOf(comment.getRating()));
-        tv_date.setText(comment.getDate().toString());
-        tv_message.setText(comment.getMessage());
+        tv_username.setText(comment.getUser_id());
+        tv_message.setText(comment.getComment_text());
 
         return convertView;
     }

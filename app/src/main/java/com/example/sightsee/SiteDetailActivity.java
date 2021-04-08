@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -26,8 +27,11 @@ import com.example.sightsee.Models.Site;
 import com.example.sightsee.Models.Upload;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -41,6 +45,7 @@ import java.util.stream.Collectors;
 
 public class SiteDetailActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference databaseCases;
     private Button moreCommentsBtn;
 
     @Override
@@ -83,23 +88,34 @@ public class SiteDetailActivity extends AppCompatActivity {
     }
 
     public void loadComments() {
-        // Set up the single comment, sorted by highest rating
-        List<Comment> temp = Comment.get_test_comments().stream()
-                //.filter(comment -> comment.getSiteId() == siteId) // Had to comment out as i removed siteid
-                .sorted(Comparator.comparingInt(Comment::getRating).reversed())
-                .collect(Collectors.toList());
+        ArrayList<Comment> first_comment = new ArrayList<Comment>();
+        String site_id = (String) getIntent().getExtras().get("site_id");
+        ListView lvCommentList = findViewById(R.id.lv_singleComment);
+        databaseCases = FirebaseDatabase.getInstance().getReference();
+        databaseCases.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                first_comment.clear();
+                for (DataSnapshot caseSnapshot: dataSnapshot.child("comments").getChildren()) {
+                    Comment comment = caseSnapshot.getValue(Comment.class);
+                    if (comment.getSite_id().equals(site_id)) {
+                        first_comment.add(comment);
+                        break;
+                    }
+                }
+                CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, first_comment);
+                lvCommentList.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
 
-        // Inflate and display only the highest rated comment if there is a comment
-        if (temp.size() > 0) {
-            ListView lvCommentList = findViewById(R.id.lv_singleComment);
-            ArrayList<Comment> onlyComment = new ArrayList<Comment>(temp.subList(0, 1));
-            CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, onlyComment);
-            lvCommentList.setAdapter(adapter);
-
-        } else {
-            // If no comments for this site (NOTE: No errors thrown if no comments)
-        }
+        CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, first_comment);
+        lvCommentList.setEmptyView(findViewById(android.R.id.empty));
+        lvCommentList.setAdapter(adapter);
     }
+
+
     public void loadPromotions() {
         List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
                 //.filter(promotion -> promotion.getSiteId() == siteId)
@@ -118,8 +134,9 @@ public class SiteDetailActivity extends AppCompatActivity {
 
 
     public void moreComments(View view) {
+        String site_id = (String) getIntent().getExtras().get("site_id");
         Intent intent = new Intent(SiteDetailActivity.this, CommentsActivity.class);
-        //intent.putExtra("siteId", String.valueOf(siteId));
+        intent.putExtra("site_id", site_id);
         startActivity(intent);
     }
 
@@ -146,8 +163,7 @@ public class SiteDetailActivity extends AppCompatActivity {
             String uploadId = mDatabaseRef.push().getKey();
             mDatabaseRef.child(uploadId).setValue(comment_upload);
             Toast.makeText(SiteDetailActivity.this, "Comment added!", Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(SiteDetailActivity.this, MainActivity.class);
+            comment_edit_text.setText("");
         }
     }
 
