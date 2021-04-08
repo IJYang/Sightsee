@@ -148,7 +148,7 @@
         android:hint="Enter your comment..."
         android:textSize="14dp"
         android:gravity="start"
-        android:background="@color/white">
+        android:background="@drawable/textbox_border">
     </EditText>
     <LinearLayout
         android:layout_width="wrap_content"
