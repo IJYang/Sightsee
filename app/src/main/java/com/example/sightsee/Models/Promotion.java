@@ -1,20 +1,18 @@
 package com.example.sightsee.Models;
 
-import com.example.sightsee.R;
-
 import java.util.ArrayList;
 
 public class Promotion {
     private String promotionId;
-    private int siteId;
+    private String siteId;
     private String promotionTitle;
     private String image_url;
 
     public String getPromotionId() { return this.promotionId; }
     public void setPromotionId(String promotionId) { this.promotionId = promotionId; }
 
-    public int getSiteId() { return siteId; }
-    public void setSiteId(int siteId) { this.siteId = siteId; }
+    public String getSiteId() { return siteId; }
+    public void setSiteId(String siteId) { this.siteId = siteId; }
 
     public String getPromotionTitle() { return this.promotionTitle; }
     public void setPromotionTitle(String promotionTitle) { this.promotionTitle = promotionTitle; }
@@ -22,7 +20,7 @@ public class Promotion {
     public String getImage_url() { return this.image_url; }
     public void setImage_url(String image_url) { this.image_url = image_url; }
 
-    public Promotion(String promotionId, int siteId, String promotionTitle, String image_url) {
+    public Promotion(String promotionId, String siteId, String promotionTitle, String image_url) {
         this.promotionId = promotionId;
         this.siteId = siteId;
         this.promotionTitle = promotionTitle;

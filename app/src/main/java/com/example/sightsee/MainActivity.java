@@ -4,24 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import android.widget.Toast;
 
-import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Site;
+import com.example.sightsee.Models.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,13 +35,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ListView lv;
     ArrayList<Site> siteList;
     TextView tvLogout;
+    TextView tvProfile;
     NavigationView navigationView;
     DatabaseReference databaseCases;
+    private FirebaseAuth mAuth;
+    ArrayList<User> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
+        lv = findViewById(R.id.site_list);
+        siteList = new ArrayList<Site>();
+        userList = new ArrayList<User>();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,10 +64,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         toggle.syncState();
 
-        lv = findViewById(R.id.site_list);
-        siteList = Site.get_test_sites();
-        SiteAdapter adapter = new SiteAdapter(MainActivity.this, siteList);
-        lv.setAdapter(adapter);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference test = mDatabase.child("users");
+        String user_email;
+        test.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot item_snapshot:dataSnapshot.getChildren()) {
+                    User user = item_snapshot.getValue(User.class);
+                    userList.add(user);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -71,22 +92,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 }
-                return true;
+                else if (id == R.id.add_location) {
+                    String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                    for (User user: userList) {
+                        if (user.user_email.equals(user_email)) {
+                            String user_type = user.user_type;
+                            if (user_type.equals("admin") && id == R.id.add_location) {
+                                startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+                else if (id == R.id.profile) {
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+                return false;
             }
         });
 
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         databaseCases = FirebaseDatabase.getInstance().getReference();
         databaseCases.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot caseSnapshot: dataSnapshot.getChildren()) {
-                    DataSnapshot test = dataSnapshot.child("sites");
-                    System.out.println("hello!");
+                siteList.clear();
+                for (DataSnapshot caseSnapshot: dataSnapshot.child("sites").getChildren()) {
+                    Site site = caseSnapshot.getValue(Site.class);
+                    siteList.add(site);
                 }
+                SiteAdapter adapter = new SiteAdapter(MainActivity.this, siteList);
+                lv.setAdapter(adapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
+
+        SiteAdapter adapter = new SiteAdapter(MainActivity.this, siteList);
+        lv.setAdapter(adapter);
 
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,21 +142,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this, SiteDetailActivity.class);
                 Site site = siteList.get(i);
-                intent.putExtra("id", site.getId());
                 intent.putExtra("name", site.getName());
                 intent.putExtra("address", site.getAddress());
-                intent.putExtra("image", site.getImageResourceId());
+                intent.putExtra("imageUrl", site.getImageUrl());
+                intent.putExtra("position", i);
                 startActivity(intent);
-            }
-        });
-
-        tvLogout = findViewById(R.id.tvLogout);
-        tvLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut(); // logout
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
             }
         });
 
@@ -127,6 +165,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void removeHeader(View view) {
+        CardView header = findViewById(R.id.main_header);
+        ListView site_list = findViewById(R.id.site_list);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0,25,0,0);
+        site_list.setLayoutParams(params);
+        header.setVisibility(View.GONE);
     }
 
 }

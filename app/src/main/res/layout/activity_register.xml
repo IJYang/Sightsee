@@ -73,6 +73,15 @@
                         android:textColorHint="@color/white"
                         app:backgroundTint="@color/white"
                         android:inputType="textPassword" />
+                    <CheckBox
+                        android:id="@+id/admin_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:text="Create Admin Account"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"

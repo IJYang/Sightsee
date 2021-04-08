@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddSiteActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#2E2E2E"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="Add Attraction"
+        android:textColor="@color/white"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusable="false"
+        android:focusableInTouchMode="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/site_name"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Site Name"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusable="false"
+        android:focusableInTouchMode="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type: "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/site_type"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Site Type"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusable="false"
+        android:focusableInTouchMode="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/site_address"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Site Address"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusable="false"
+        android:focusableInTouchMode="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price: "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:padding="5dp"/>
+        <EditText
+            android:id="@+id/site_price"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Site Price"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:text="Choose Image"/>
+
+    <Button
+        android:id="@+id/add_new_site_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Submit Site"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/site_image_display"/>
+
+
+</LinearLayout>

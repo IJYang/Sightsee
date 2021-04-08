@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,10 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sightsee.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText editEmail, editPassword;
@@ -26,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView tvLogin;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
+    DatabaseReference databaseCases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,19 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            CheckBox admin_checkbox = findViewById(R.id.admin_checkbox);
+
+
+                            databaseCases = FirebaseDatabase.getInstance().getReference("users");
+                            DatabaseReference newUserRef = databaseCases.push();
+                            if (admin_checkbox.isChecked()) {
+                                newUserRef.setValue(new User(email, "admin"));
+                            }
+                            else {
+                                newUserRef.setValue(new User(email, "default"));
+                            }
+                            // String key = databaseCases.push().getKey();
+
                             Toast.makeText(com.example.sightsee.RegisterActivity.this, "User Created", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {

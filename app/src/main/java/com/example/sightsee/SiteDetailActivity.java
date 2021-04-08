@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Promotion;
 import com.example.sightsee.Models.PromotionActivity;
@@ -28,9 +29,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -54,20 +55,27 @@ public class SiteDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.expanded_site_details);
 
-        siteId = (Integer) getIntent().getExtras().get("id");
         String name = (String) getIntent().getExtras().get("name");
         String address = (String) getIntent().getExtras().get("address");
-        int imageId = (Integer) getIntent().getExtras().get("image");
+        String imageUrl = (String) getIntent().getExtras().get("imageUrl");
+        int position = (Integer) getIntent().getExtras().get("position");
 
         ScrollView expanded_site_detail = findViewById(R.id.expanded_site_background);
-        if (siteId % 2 == 0) {
+        if (position % 2 == 0) {
             expanded_site_detail.setBackgroundColor(Color.parseColor("#1485C5"));
         }
         else {
             expanded_site_detail.setBackgroundColor(Color.parseColor("#90CF3F"));
         }
+
         ImageView photo = findViewById(R.id.siteImage);
-        photo.setImageResource(imageId);
+        //Glide.with(getApplicationContext()).load(imageUrl).into(photo);
+
+        Picasso.get()
+                .load(imageUrl)
+                .into(photo);
+
+        //photo.setImageResource(R.drawable.capilano);
 //        photo.setContentDescription(food.toString());
 
         // Display product information
@@ -78,6 +86,9 @@ public class SiteDetailActivity extends AppCompatActivity {
         addresstv.setText("Address: " + address);
 
         loadComments();
+//        loadPromotions();
+
+
         /***************************************/
 //        fbPromoList = new ArrayList<Promotion>();
 //        promotionsDatabase = FirebaseDatabase.getInstance().getReference("promotions");
@@ -101,7 +112,7 @@ public class SiteDetailActivity extends AppCompatActivity {
         /**
         // Set up the single comment, sorted by highest rating
         List<Comment> temp = Comment.get_test_comments().stream()
-                .filter(comment -> comment.getSiteId() == siteId)
+                //.filter(comment -> comment.getSiteId() == siteId) // Had to comment out as i removed siteid
                 .sorted(Comparator.comparingInt(Comment::getRating).reversed())
                 .collect(Collectors.toList());
 
@@ -143,7 +154,6 @@ public class SiteDetailActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Get each individual value for the comment then make the comment object
 
-                    // TODO: Adjust this so site_id is a string that retrieves actual data from FB
                     String date_added = snapshot.child("date_added").getValue().toString();
                     String message = snapshot.child("message").getValue().toString();
                     Long longRating = (Long) snapshot.child("rating").getValue();
@@ -170,13 +180,13 @@ public class SiteDetailActivity extends AppCompatActivity {
 
     public void moreComments(View view) {
         Intent intent = new Intent(SiteDetailActivity.this, CommentsActivity.class);
-        intent.putExtra("siteId", String.valueOf(siteId));
+//        intent.putExtra("siteId", String.valueOf(siteId));
         startActivity(intent);
     }
 
     public void morePromotions(View view) {
         Intent intent = new Intent(SiteDetailActivity.this, PromotionActivity.class);
-        intent.putExtra("siteId", String.valueOf(siteId));
+        //intent.putExtra("siteId", String.valueOf(siteId));
         startActivity(intent);
     }
 }
