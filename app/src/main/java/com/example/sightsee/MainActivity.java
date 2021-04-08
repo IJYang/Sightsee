@@ -30,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ListView lv;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DatabaseReference databaseCases;
     private FirebaseAuth mAuth;
     ArrayList<User> userList;
+    Map<Site, String> map = new HashMap<Site, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference test = mDatabase.child("users");
-        String user_email;
         test.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     userList.add(user);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -99,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             String user_type = user.user_type;
                             if (user_type.equals("admin") && id == R.id.add_location) {
                                 startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
-
                             }
                             else {
                                 Toast.makeText(MainActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 siteList.clear();
                 for (DataSnapshot caseSnapshot: dataSnapshot.child("sites").getChildren()) {
                     Site site = caseSnapshot.getValue(Site.class);
+                    map.put(site, caseSnapshot.getKey());
                     siteList.add(site);
                 }
                 SiteAdapter adapter = new SiteAdapter(MainActivity.this, siteList);
@@ -141,6 +142,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this, SiteDetailActivity.class);
                 Site site = siteList.get(i);
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                String site_id = map.get(site);
+                String display_name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+                String user_id = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                intent.putExtra("site_id", site_id);
+                intent.putExtra("user_id", user_id);
                 intent.putExtra("name", site.getName());
                 intent.putExtra("address", site.getAddress());
                 intent.putExtra("imageUrl", site.getImageUrl());

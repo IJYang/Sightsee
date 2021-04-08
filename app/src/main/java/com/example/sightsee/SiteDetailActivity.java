@@ -3,22 +3,33 @@ package com.example.sightsee;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.sightsee.Models.Comment;
+import com.example.sightsee.Models.CommentUpload;
 import com.example.sightsee.Models.Promotion;
 import com.example.sightsee.Models.PromotionActivity;
 import com.example.sightsee.Models.Site;
+import com.example.sightsee.Models.Upload;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -29,7 +40,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SiteDetailActivity extends AppCompatActivity {
-
+    private DatabaseReference mDatabaseRef;
     private Button moreCommentsBtn;
 
     @Override
@@ -117,4 +128,27 @@ public class SiteDetailActivity extends AppCompatActivity {
         //intent.putExtra("siteId", String.valueOf(siteId));
         startActivity(intent);
     }
+
+    public void submitComment(View view) {
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("comments");
+        EditText comment_edit_text = findViewById(R.id.comment_edit_text);
+        String user_id = (String) getIntent().getExtras().get("user_id");
+        String site_id = (String) getIntent().getExtras().get("site_id");
+        String comment_text = comment_edit_text.getText().toString().trim();
+
+        if (comment_text.trim().equals("")) {
+            Toast.makeText(SiteDetailActivity.this, "No comment provided", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            CommentUpload comment_upload = new CommentUpload(user_id.trim(),
+                    site_id.trim(),
+                    comment_text.trim());
+            String uploadId = mDatabaseRef.push().getKey();
+            mDatabaseRef.child(uploadId).setValue(comment_upload);
+            Toast.makeText(SiteDetailActivity.this, "Comment added!", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(SiteDetailActivity.this, MainActivity.class);
+        }
+    }
+
 }

@@ -114,10 +114,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="Submit Site"/>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/site_image_display"/>
-
-
 </LinearLayout>
