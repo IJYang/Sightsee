@@ -25,6 +25,8 @@
     <string name="profile">Profile</string>
     <string name="filter">Filter</string>
     <string name="detail_header">Details</string>
+    <string name="enter_comment_prompt">Leave a Comment</string>
+    <string name="comment_et_hint">Enter your comment...</string>
 
     <!-- Promotion List-->
     <string name="tv_promo_title">Promotions</string>
