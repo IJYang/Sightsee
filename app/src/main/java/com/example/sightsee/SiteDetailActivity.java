@@ -68,6 +68,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
     private GoogleMap mMap;
     ArrayList<User> userList;
     NavigationView navigationView;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +99,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
         String name = (String) getIntent().getExtras().get("name");
         String address = (String) getIntent().getExtras().get("address");
         String imageUrl = (String) getIntent().getExtras().get("imageUrl");
-        int position = (Integer) getIntent().getExtras().get("position");
+        position = (Integer) getIntent().getExtras().get("position");
         String type = (String) getIntent().getExtras().get("site_type");
         String price = (String) getIntent().getExtras().get("price");
 
@@ -267,6 +268,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
         String site_id = (String) getIntent().getExtras().get("site_id");
         Intent intent = new Intent(SiteDetailActivity.this, CommentsActivity.class);
         intent.putExtra("site_id", site_id);
+        intent.putExtra("position", position);
         startActivity(intent);
     }
 
@@ -274,6 +276,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
         String site_id = (String) getIntent().getExtras().get("site_id");
         Intent intent = new Intent(SiteDetailActivity.this, PromotionActivity.class);
         intent.putExtra("site_id", String.valueOf(site_id));
+        intent.putExtra("position", position);
         startActivity(intent);
     }
 

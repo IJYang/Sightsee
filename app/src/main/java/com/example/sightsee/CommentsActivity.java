@@ -11,8 +11,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.example.sightsee.Models.Comment;
@@ -71,6 +73,14 @@ public class CommentsActivity extends AppCompatActivity implements NavigationVie
         });
 
         // Don't need any click handlers yet
+        LinearLayout expanded_site_detail = findViewById(R.id.lineParent);
+        int position = (Integer) getIntent().getExtras().get("position");
+        if (position % 2 == 0) {
+            expanded_site_detail.setBackgroundColor(Color.parseColor("#BF008BF8"));
+        }
+        else {
+            expanded_site_detail.setBackgroundColor(Color.parseColor("#68B684"));
+        }
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userList = new ArrayList<User>();
