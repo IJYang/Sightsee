@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/home_group">
         <item
             android:id="@+id/home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/home"/>
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/profile_group">
         <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_baseline_account_circle_24"
             android:title="@string/profile"/>
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/location_group">
         <item
             android:id="@+id/add_location"
             android:icon="@drawable/ic_baseline_add_location_24"
             android:title="@string/add_location"/>
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/logout_group">
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_baseline_exit_to_app_24"

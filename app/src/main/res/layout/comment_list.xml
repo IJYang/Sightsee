@@ -53,7 +53,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/tv_comment"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"/>
+                    android:layout_marginLeft="5dp"
+                    android:textSize="16dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
