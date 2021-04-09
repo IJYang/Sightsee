@@ -173,19 +173,31 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
 
 
     public void loadPromotions() {
-//        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
-//                //.filter(promotion -> promotion.getSiteId() == siteId)
-//                .collect(Collectors.toList());
-//
-//        if (fullPromoList.size() > 0) {
-//            ListView lvPromoList = findViewById(R.id.lv_singlePromotion);
-//            ArrayList<Promotion> onlyPromotion = new ArrayList<Promotion>(fullPromoList.subList(0, 1));
-//            PromotionAdapter promotionAdapter = new PromotionAdapter(SiteDetailActivity.this, onlyPromotion);
-//            lvPromoList.setAdapter(promotionAdapter);
-//
-//        } else {
-//            // If no promos
-//        }
+        ArrayList<Promotion> first = new ArrayList<Promotion>();
+        String site_id = (String) getIntent().getExtras().get("site_id");
+        ListView lvPromoList = findViewById(R.id.lv_singlePromotion);
+        databaseCases = FirebaseDatabase.getInstance().getReference();
+        databaseCases.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                first.clear();
+                for (DataSnapshot caseSnapshot: dataSnapshot.child("promotions").getChildren()) {
+                    Promotion promo = caseSnapshot.getValue(Promotion.class);
+                    if (promo.getSiteId().equals(site_id)) {
+                        first.add(promo);
+                        break;
+                    }
+                }
+                PromotionAdapter adapter = new PromotionAdapter(SiteDetailActivity.this, first);
+                lvPromoList.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
+        PromotionAdapter adapter = new PromotionAdapter(SiteDetailActivity.this, first);
+        lvPromoList.setEmptyView(findViewById(android.R.id.empty));
+        lvPromoList.setAdapter(adapter);
     }
 
 
