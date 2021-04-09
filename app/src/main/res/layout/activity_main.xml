@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:background="#CB0093D7"
+            android:background="#333232"
             app:titleTextColor="@color/white"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -58,7 +58,7 @@
                 android:orientation="horizontal"
                 android:weightSum="1"
                 android:gravity="center"
-                android:background="@drawable/gradient_color_horiz">
+                android:background="#CEBACF">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

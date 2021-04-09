@@ -23,7 +23,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.4"
+            android:layout_weight="0.45"
             android:orientation="vertical"
             android:gravity="center_vertical">
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tv_username"
                 android:textColor="@color/white"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -41,14 +41,14 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:gravity="start"
-            android:layout_weight="0.6">
+            android:layout_weight="0.55">
             <TextView
                 android:id="@+id/tvCommentMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_comment"
                 android:textColor="@color/white"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="5dp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

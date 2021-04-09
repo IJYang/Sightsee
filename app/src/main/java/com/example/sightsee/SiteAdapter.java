@@ -39,10 +39,10 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         if (position % 2 == 0) {
 
 
-            site_background.setBackgroundColor(Color.parseColor("#CB0093D7"));
+            site_background.setBackgroundColor(Color.parseColor("#BF008BF8"));
         }
         else {
-            site_background.setBackgroundColor(Color.parseColor("#9C24C82A"));
+            site_background.setBackgroundColor(Color.parseColor("#68B684"));
         }
 
         ImageView site_image = convertView.findViewById(R.id.site_image);

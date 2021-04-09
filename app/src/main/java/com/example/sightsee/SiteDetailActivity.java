@@ -97,10 +97,10 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
 
         ScrollView expanded_site_detail = findViewById(R.id.expanded_site_background);
         if (position % 2 == 0) {
-            expanded_site_detail.setBackgroundColor(Color.parseColor("#CB0093D7"));
+            expanded_site_detail.setBackgroundColor(Color.parseColor("#BF008BF8"));
         }
         else {
-            expanded_site_detail.setBackgroundColor(Color.parseColor("#9C24C82A"));
+            expanded_site_detail.setBackgroundColor(Color.parseColor("#68B684"));
         }
 
         ImageView photo = findViewById(R.id.siteImage);
