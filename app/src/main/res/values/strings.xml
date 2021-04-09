@@ -23,6 +23,7 @@
     <string name="tv_rating">Rating: \u0020</string>
     <string name="tv_comment">Comment: \u0020</string>
     <string name="profile">Profile</string>
+    <string name="home" >home</string>
     <string name="filter">Filter</string>
     <string name="detail_header">Details</string>
     <string name="enter_comment_prompt">Leave a Comment</string>
