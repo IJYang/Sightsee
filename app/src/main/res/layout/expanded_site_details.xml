@@ -99,8 +99,8 @@
         <!-- ///// Comments ///// -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="10dp">
             <TextView
                 android:text="@string/tv_comments"
@@ -109,18 +109,21 @@
                 style="@style/text_heading2"
                 />
 
+            <ListView
+                android:id="@+id/lv_singleComment"
+                android:padding="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/moreCommentsButton"
                 style="@style/btn_standard"
+                android:layout_height="wrap_content"
                 android:text="@string/see_more_button"
                 android:onClick="moreComments"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="right"
                 />
         </LinearLayout>
-
-        <ListView
-            android:id="@+id/lv_singleComment"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
 
         <View
             android:id="@+id/separator_line"
@@ -130,8 +133,8 @@
         <!--///// Promotions //////-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="10dp">
 
             <TextView
@@ -140,26 +143,36 @@
                 android:layout_marginTop="10dp"
                 style="@style/text_heading2"
                 />
-
-            <Button
-                android:id="@+id/addPromoBtn"
-                style="@style/btn_standard"
-                android:onClick="addPromotion"
-                android:text="Add Promotion"
+            <ListView
+                android:id="@+id/lv_singlePromotion"
+                android:padding="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 />
-
-            <Button
-                android:id="@+id/morePromosBtn"
-                style="@style/btn_standard"
-                android:onClick="morePromotions"
-                android:text="@string/see_more_button"
-                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/addPromoBtn"
+                    style="@style/btn_standard"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="addPromotion"
+                    android:text="Add Promotion"
+                    />
+                <Button
+                    android:id="@+id/morePromosBtn"
+                    style="@style/btn_standard"
+                    android:onClick="morePromotions"
+                    android:text="@string/see_more_button"
+                    android:layout_marginRight="10dp"
+                    />
+            </LinearLayout>
         </LinearLayout>
-        <ListView
-            android:id="@+id/lv_singlePromotion"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"/>
+
         <View
             android:id="@+id/comments_separator_line"
             style="@style/separator_line"

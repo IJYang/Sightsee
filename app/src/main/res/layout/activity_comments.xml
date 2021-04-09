@@ -16,9 +16,12 @@
         android:text="Comments"
         android:textColor="@color/white"/>
     <ListView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:id="@+id/commentList"
         android:layout_width="fill_parent"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:padding="10dp"
         android:layout_height="wrap_content"/>
 
 </RelativeLayout>

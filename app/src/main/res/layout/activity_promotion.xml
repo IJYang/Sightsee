@@ -16,10 +16,13 @@
         android:text="Promotions"
         android:textColor="@color/white"/>
     <ListView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:id="@+id/promotion_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:padding="10dp"
         />
 
 </RelativeLayout>
