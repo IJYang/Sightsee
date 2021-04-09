@@ -209,17 +209,16 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
             if (user.user_email.equals(user_email)) {
                 String user_type = user.user_type;
                 if (user_type.equals("admin")) {
-                    startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                    String siteId = (String) getIntent().getExtras().get("site_id");
+                    Intent intent = new Intent(SiteDetailActivity.this, AddPromotionActivity.class);
+                    intent.putExtra("siteId", String.valueOf(siteId));
+                    startActivity(intent);
                 }
                 else {
                     Toast.makeText(SiteDetailActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
                 }
             }
         }
-        String siteId = (String) getIntent().getExtras().get("site_id");
-        Intent intent = new Intent(SiteDetailActivity.this, AddPromotionActivity.class);
-        intent.putExtra("siteId", String.valueOf(siteId));
-        startActivity(intent);
     }
 
     public void submitComment(View view) {
