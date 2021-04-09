@@ -147,7 +147,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.profile) {
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+//                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.home) {

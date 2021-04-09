@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.home) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 return false;
