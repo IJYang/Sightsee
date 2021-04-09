@@ -129,8 +129,9 @@ public class AddPromotionActivity extends AppCompatActivity {
                     firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            Promotion promo = new Promotion(site_id, uri.toString(),
+                            Promotion promo = new Promotion(site_id,
                                     mEditTextPromoTitle.getText().toString().trim(),
+                                    uri.toString(),
                                     email,
                                     mEditTextPromoDetails.getText().toString().trim());
                             String uploadId = mDatabaseRef.push().getKey();

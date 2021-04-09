@@ -20,7 +20,7 @@
 
         <activity android:name=".ProfileActivity" />
         <activity android:name=".AddSiteActivity" />
-        <activity android:name=".Models.PromotionActivity" />
+        <activity android:name=".PromotionActivity" />
         <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

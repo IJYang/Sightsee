@@ -22,7 +22,7 @@ public class Promotion {
     public void setPromotionTitle(String promotionTitle) { this.promotionTitle = promotionTitle; }
 
     public String getImageUrl() { return this.imageUrl; }
-    public void setImageResourceId(String imageUrl) { this.imageUrl = imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
     public String getUserEmail() { return this.userEmail; }
     public void setUserEmail(String userEmail) { this.userEmail = userEmail; }

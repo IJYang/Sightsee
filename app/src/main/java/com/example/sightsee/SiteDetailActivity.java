@@ -25,7 +25,7 @@ import com.bumptech.glide.Glide;
 import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.CommentUpload;
 import com.example.sightsee.Models.Promotion;
-import com.example.sightsee.Models.PromotionActivity;
+import com.example.sightsee.PromotionActivity;
 import com.example.sightsee.Models.Site;
 import com.example.sightsee.Models.Upload;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -179,8 +179,9 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     public void morePromotions(View view) {
+        String site_id = (String) getIntent().getExtras().get("site_id");
         Intent intent = new Intent(SiteDetailActivity.this, PromotionActivity.class);
-        //intent.putExtra("siteId", String.valueOf(siteId));
+        intent.putExtra("site_id", String.valueOf(site_id));
         startActivity(intent);
     }
 

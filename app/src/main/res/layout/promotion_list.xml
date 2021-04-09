@@ -18,6 +18,17 @@
         android:textSize="10pt"
         />
 
+    <TextView
+        android:id="@+id/tv_promoDetails"
+        android:text="Details"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="10pt"
+        />
+
     <ImageView
         android:id="@+id/iv_promoPicture"
         android:layout_width="fill_parent"
