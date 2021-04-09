@@ -25,11 +25,13 @@ import com.bumptech.glide.Glide;
 import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.CommentUpload;
 import com.example.sightsee.Models.Promotion;
+import com.example.sightsee.Models.User;
 import com.example.sightsee.PromotionActivity;
 import com.example.sightsee.Models.Site;
 import com.example.sightsee.Models.Upload;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +60,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
     private DatabaseReference databaseCases;
     private Button moreCommentsBtn;
     private GoogleMap mMap;
+    ArrayList<User> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,22 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         //
+        userList = new ArrayList<User>();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference test = mDatabase.child("users");
+        test.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot item_snapshot:dataSnapshot.getChildren()) {
+                    User user = item_snapshot.getValue(User.class);
+                    userList.add(user);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
         String name = (String) getIntent().getExtras().get("name");
         String address = (String) getIntent().getExtras().get("address");
         String imageUrl = (String) getIntent().getExtras().get("imageUrl");
@@ -186,6 +204,18 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     public void addPromotion(View view) {
+        String user_email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        for (User user: userList) {
+            if (user.user_email.equals(user_email)) {
+                String user_type = user.user_type;
+                if (user_type.equals("admin")) {
+                    startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                }
+                else {
+                    Toast.makeText(SiteDetailActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
         String siteId = (String) getIntent().getExtras().get("site_id");
         Intent intent = new Intent(SiteDetailActivity.this, AddPromotionActivity.class);
         intent.putExtra("siteId", String.valueOf(siteId));

@@ -55,7 +55,7 @@ public class AddSiteActivity extends AppCompatActivity {
         mEditTextSitePrice = findViewById(R.id.site_price);
 
         mButtonChooseImage = findViewById(R.id.add_image_button);
-        mButtonAddNewSite = findViewById(R.id.add_new_promo);
+        mButtonAddNewSite = findViewById(R.id.add_new_site_button);
 
         mImageViewSiteImage = findViewById(R.id.site_image_display);
 
