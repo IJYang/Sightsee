@@ -155,19 +155,19 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
 
 
     public void loadPromotions() {
-        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
-                //.filter(promotion -> promotion.getSiteId() == siteId)
-                .collect(Collectors.toList());
-
-        if (fullPromoList.size() > 0) {
-            ListView lvPromoList = findViewById(R.id.lv_singlePromotion);
-            ArrayList<Promotion> onlyPromotion = new ArrayList<Promotion>(fullPromoList.subList(0, 1));
-            PromotionAdapter promotionAdapter = new PromotionAdapter(SiteDetailActivity.this, onlyPromotion);
-            lvPromoList.setAdapter(promotionAdapter);
-
-        } else {
-            // If no promos
-        }
+//        List<Promotion> fullPromoList = Promotion.get_test_promotions().stream()
+//                //.filter(promotion -> promotion.getSiteId() == siteId)
+//                .collect(Collectors.toList());
+//
+//        if (fullPromoList.size() > 0) {
+//            ListView lvPromoList = findViewById(R.id.lv_singlePromotion);
+//            ArrayList<Promotion> onlyPromotion = new ArrayList<Promotion>(fullPromoList.subList(0, 1));
+//            PromotionAdapter promotionAdapter = new PromotionAdapter(SiteDetailActivity.this, onlyPromotion);
+//            lvPromoList.setAdapter(promotionAdapter);
+//
+//        } else {
+//            // If no promos
+//        }
     }
 
 
@@ -180,6 +180,12 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
 
     public void morePromotions(View view) {
         Intent intent = new Intent(SiteDetailActivity.this, PromotionActivity.class);
+        //intent.putExtra("siteId", String.valueOf(siteId));
+        startActivity(intent);
+    }
+
+    public void addPromotion(View view) {
+        Intent intent = new Intent(SiteDetailActivity.this, AddPromotionActivity.class);
         //intent.putExtra("siteId", String.valueOf(siteId));
         startActivity(intent);
     }

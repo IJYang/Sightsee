@@ -177,6 +177,19 @@
                 android:textColor="@color/white"/>
 
             <Button
+                android:id="@+id/addPromoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:backgroundTint="#E5E5E5"
+                android:onClick="addPromotion"
+                android:textColor="#7D7D7D"
+                android:text="Add Promotion"
+                android:textSize="10sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp" />
+
+            <Button
                 android:id="@+id/morePromosBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -37,7 +37,7 @@ public class PromotionAdapter extends ArrayAdapter<Promotion> {
         ImageView iv_promoPicture = convertView.findViewById(R.id.iv_promoPicture);
 
         tv_promoTitle.setText(promotion.getPromotionTitle());
-        iv_promoPicture.setImageResource(promotion.getImageResourceId());
+//        iv_promoPicture.setImageResource(promotion.getImageResourceId());
 
         return convertView;
     }

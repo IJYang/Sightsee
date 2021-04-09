@@ -32,10 +32,10 @@ public class PromotionActivity extends AppCompatActivity {
 //                .collect(Collectors.toList());
 //        promotionArrayList = (ArrayList<Promotion>) fullPromoList;
 
-        promotionArrayList = Promotion.get_test_promotions();
-        lv = findViewById(R.id.promotion_list);
-        PromotionAdapter adapter = new PromotionAdapter(PromotionActivity.this, promotionArrayList);
-        lv.setAdapter(adapter);
+//        promotionArrayList = Promotion.get_test_promotions();
+//        lv = findViewById(R.id.promotion_list);
+//        PromotionAdapter adapter = new PromotionAdapter(PromotionActivity.this, promotionArrayList);
+//        lv.setAdapter(adapter);
 
         // Don't need click handlers yet
 
