@@ -185,8 +185,9 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     public void addPromotion(View view) {
+        String siteId = (String) getIntent().getExtras().get("site_id");
         Intent intent = new Intent(SiteDetailActivity.this, AddPromotionActivity.class);
-        //intent.putExtra("siteId", String.valueOf(siteId));
+        intent.putExtra("siteId", String.valueOf(siteId));
         startActivity(intent);
     }
 

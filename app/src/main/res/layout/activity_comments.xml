@@ -7,7 +7,14 @@
     tools:context=".CommentsActivity"
     android:id="@+id/comments_background"
     android:background="@drawable/gradient_color">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#2E2E2E"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="Comments"
+        android:textColor="@color/white"/>
     <ListView
         android:id="@+id/commentList"
         android:layout_width="fill_parent"

@@ -16,11 +16,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.sightsee.Models.Promotion;
 import com.example.sightsee.Models.Upload;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,10 +35,9 @@ public class AddPromotionActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private EditText mEditTextSiteName;
-    private EditText mEditTextSiteType;
-    private EditText mEditTextSiteAddress;
-    private EditText mEditTextSitePrice;
+    private EditText mEditTextPromoTitle;
+    private EditText mEditTextPromoDetails;
+
     private Button mButtonChooseImage;
     private Button mButtonAddNewSite;
     private ImageView mImageViewSiteImage;
@@ -44,24 +46,33 @@ public class AddPromotionActivity extends AppCompatActivity {
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
 
+    private String site_id;
+    public String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_promotion);
 
-        mEditTextSiteName = findViewById(R.id.site_name);
-        mEditTextSiteType = findViewById(R.id.site_type);
-        mEditTextSiteAddress = findViewById(R.id.site_address);
-        mEditTextSitePrice = findViewById(R.id.site_price);
+
+        mEditTextPromoTitle = findViewById(R.id.promo_title);
+        mEditTextPromoDetails = findViewById(R.id.promo_details);
 
         mButtonChooseImage = findViewById(R.id.add_image_button);
-        mButtonAddNewSite = findViewById(R.id.add_new_site_button);
+        mButtonAddNewSite = findViewById(R.id.add_new_promo);
 
         mImageViewSiteImage = findViewById(R.id.site_image_display);
 
+        site_id = (String) getIntent().getExtras().get("siteId");
         mStorageRef = FirebaseStorage.getInstance().getReference("image_uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("sites");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("promotions");
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            email = user.getEmail();
+        } else {
+            email = "email Error";
+        }
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,14 +129,13 @@ public class AddPromotionActivity extends AppCompatActivity {
                     firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            Upload upload = new Upload(mEditTextSiteName.getText().toString().trim(),
-                                    uri.toString(),
-                                    mEditTextSiteAddress.getText().toString().trim(),
-                                    mEditTextSiteType.getText().toString().trim(),
-                                    mEditTextSitePrice.getText().toString().trim());
+                            Promotion promo = new Promotion(site_id, uri.toString(),
+                                    mEditTextPromoTitle.getText().toString().trim(),
+                                    email,
+                                    mEditTextPromoDetails.getText().toString().trim());
                             String uploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadId).setValue(upload);
-                            Toast.makeText(AddPromotionActivity.this, "Site added!", Toast.LENGTH_SHORT).show();
+                            mDatabaseRef.child(uploadId).setValue(promo);
+                            Toast.makeText(AddPromotionActivity.this, "Promotion added!", Toast.LENGTH_SHORT).show();
                             onBackPressed();
                         }
                     });
