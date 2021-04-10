@@ -222,7 +222,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
                         first_comment.add(comment);
                     }
                 }
-                if (first_comment.size() > 1) {
+                if (first_comment.size() >= 1) {
                     last_comment.add(first_comment.get(first_comment.size() - 1));
                 }
                 CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, last_comment);
@@ -254,7 +254,7 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
                         first.add(promo);
                     }
                 }
-                if (first.size() > 1) {
+                if (first.size() >= 1) {
                     last_promotion.add(first.get(first.size() - 1));
                 }
                 PromotionAdapter adapter = new PromotionAdapter(SiteDetailActivity.this, last_promotion);
