@@ -149,8 +149,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/see_more_button"
                             android:onClick="moreComments"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginRight="20dp"
                             android:layout_gravity="right"
+                            android:layout_marginTop="0dp"
                             />
                     </LinearLayout>
 
@@ -234,7 +235,7 @@
                             android:text="Submit"
                             android:onClick="submitComment"
                             style="@style/btn_standard"
-                            />
+                            android:layout_marginRight="20dp"/>
 
                     </LinearLayout>
                 </LinearLayout>

@@ -215,14 +215,15 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 first_comment.clear();
+                ArrayList<Comment> last_comment = new ArrayList<Comment>();
                 for (DataSnapshot caseSnapshot: dataSnapshot.child("comments").getChildren()) {
                     Comment comment = caseSnapshot.getValue(Comment.class);
                     if (comment.getSite_id().equals(site_id)) {
                         first_comment.add(comment);
-                        break;
                     }
                 }
-                CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, first_comment);
+                last_comment.add(first_comment.get(first_comment.size() - 1));
+                CommentAdapter adapter = new CommentAdapter(SiteDetailActivity.this, last_comment);
                 lvCommentList.setAdapter(adapter);
             }
             @Override
@@ -243,15 +244,16 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
         databaseCases.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Promotion> last_promotion = new ArrayList<Promotion>();
                 first.clear();
                 for (DataSnapshot caseSnapshot: dataSnapshot.child("promotions").getChildren()) {
                     Promotion promo = caseSnapshot.getValue(Promotion.class);
                     if (promo.getSiteId().equals(site_id)) {
                         first.add(promo);
-                        break;
                     }
                 }
-                PromotionAdapter adapter = new PromotionAdapter(SiteDetailActivity.this, first);
+                last_promotion.add(first.get(first.size() - 1));
+                PromotionAdapter adapter = new PromotionAdapter(SiteDetailActivity.this, last_promotion);
                 lvPromoList.setAdapter(adapter);
             }
             @Override
