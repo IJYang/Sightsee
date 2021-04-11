@@ -9,12 +9,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,13 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText editEmail;
-    EditText editPassword;
-    ProgressBar progressBar;
-    Button btnLogin;
-    TextView tvCreateNewAccount;
-
-    FirebaseAuth fAuth;
+    private EditText editEmail;
+    private EditText editPassword;
+    private ProgressBar progressBar;
+    private Button btnLogin;
+    private TextView tvCreateNewAccount;
+    private FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,31 +45,37 @@ public class LoginActivity extends AppCompatActivity {
                 String password = editPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    editEmail.setError("Email is required");
+                    editEmail.setError(getString(R.string.email_error));
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    editEmail.setError("Password is required");
+                    editEmail.setError(getString(R.string.password_error));
                     return;
                 }
 
                 if (password.length() <6) {
-                    editEmail.setError("Password must be >= 6 characters.");
+                    editEmail.setError(getString(R.string.password_length_error));
                     return;
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
 
                 //authenticate user
-                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(com.example.sightsee.LoginActivity.this, "Login successful!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(com.example.sightsee.LoginActivity.this,
+                                    getString(R.string.login_success_message),
+                                    Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
-                            Toast.makeText(com.example.sightsee.LoginActivity.this, "ERROR: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(com.example.sightsee.LoginActivity.this,
+                                    getString(R.string.login_error_message)
+                                            + task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }

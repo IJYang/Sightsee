@@ -2,9 +2,23 @@
     <string name="app_name">Sightsee</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
+    <string name="login_success_message">Login successful!</string>
+    <string name="login_error_message">ERROR: </string>
+    <string name="error_text">Error</string>
+    <string name="error_getting_data_msg">Error getting data</string>
+    <string name="email_error">Email is required</string>
+    <string name="password_error">Password is required</string>
+    <string name="password_length_error">Password must be >= 6 characters.</string>
     <string name="register">Register</string>
+    <string name="user_created">User Created</string>
     <string name="logout">Logout</string>
+    <string name="admin_type">admin</string>
+    <string name="default_type">default</string>
+    <string name="loading_text">Loading...</string>
+    <string name="insufficient_privileges">Insufficient Privileges.</string>
     <string name="email">Email</string>
+    <string name="email_header">Email: </string>
+    <string name="user_type_header">User Type: </string>
     <string name="password">Password</string>
     <string name="login_title">Login</string>
     <string name="create_new_account">Create account</string>
@@ -22,6 +36,25 @@
     <string name="card_image">Image</string>
     <string name="card_name">Name</string>
     <string name="card_type">Type</string>
+    <string name="address_header">Address: %1$s</string>
+    <string name="type_header">Type: %1$s</string>
+    <string name="type_header_only">Type: </string>
+    <string name="address_header_only">Address: </string>
+    <string name="price_header_only">Price: </string>
+    <string name="price_header">Price: %1$s</string>
+    <string name="name_header">Name: </string>
+    <string name="main_header">Popular Attractions in British Columbia</string>
+    <string name="user_profile">User Profile</string>
+    <string name="image">Image</string>
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="price">Price</string>
+    <string name="address">Address</string>
+    <string name="add_attraction">Add Attraction</string>
+    <string name="site_name_hint">Enter Site Name</string>
+    <string name="site_type_hint">Enter Site Type</string>
+    <string name="site_address_hint">Enter Site Address</string>
+    <string name="site_price_hint">Enter Site Price</string>
 
 
     <!-- Comment List -->
@@ -35,9 +68,25 @@
     <string name="detail_header">Details</string>
     <string name="enter_comment_prompt">Leave a Comment</string>
     <string name="comment_et_hint">Enter your comment...</string>
+    <string name="no_comment">No comment provided</string>
+    <string name="comment_added">Comment added!</string>
+    <string name="comments_header">Comments</string>
 
     <!-- Promotion List-->
     <string name="tv_promo_title">Promotions</string>
+    <string name="add_promotion">Add Promotion</string>
+    <string name="title_header">Title: </string>
+    <string name="promotion_detail_header">Details: </string>
+    <string name="choose_image">Choose Image</string>
+    <string name="submit_promotion">Submit Promotion</string>
+    <string name="submit">Submit</string>
+    <string name="submit_site">Submit Site</string>
+    <string name="promotion_name_hint">Enter Promotion Name</string>
+    <string name="promotion_detail_hint">Enter Promotion Details</string>
+
+    <string name="fragment_username">Fragment Username</string>
+    <string name="fragment_rating">Fragment Rating</string>
+    <string name="fragment_comment">Fragment Comment </string>
 
     <!-- Main Activity-->
     <string name="attractions_title_card">Popular Attractions in British Columbia</string>

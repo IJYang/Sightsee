@@ -6,42 +6,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
-
 import com.example.sightsee.Models.Comment;
-import com.example.sightsee.Models.Site;
 import com.example.sightsee.Models.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CommentsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private FirebaseAuth mAuth;
-    DatabaseReference databaseCases;
-    ArrayList<Comment> comment_list;
-    int siteId; // used for determining background colour?
+    private DatabaseReference databaseCases;
     private ListView lv;
-
-    NavigationView navigationView;
-    ArrayList<User> userList;
+    private NavigationView navigationView;
+    private ArrayList<User> userList;
     public DatabaseReference mDatabase;
 
     @Override
@@ -126,7 +113,7 @@ public class CommentsActivity extends AppCompatActivity implements NavigationVie
                     for (User user: userList) {
                         if (user.user_email.equals(user_email)) {
                             String user_type = user.user_type;
-                            if (user_type.equals("admin") && id == R.id.add_location) {
+                            if (user_type.equals("admin")) {
                                 startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
                             }
                             else {

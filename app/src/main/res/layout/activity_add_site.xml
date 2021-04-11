@@ -14,7 +14,7 @@
     android:background="#2E2E2E"
     android:gravity="center"
     android:textSize="20sp"
-    android:text="Add Attraction"
+    android:text="@string/add_attraction"
     android:textColor="@color/white"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: "
+                android:text="@string/name_header"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:padding="5dp"
@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type: "
+                android:text="@string/type_header_only"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:padding="5dp"
@@ -47,7 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Address: "
+                android:text="@string/address_header_only"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:padding="5dp"
@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price: "
+                android:text="@string/price_header_only"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:padding="5dp"
@@ -73,25 +73,25 @@
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Site Name"/>
+                android:hint="@string/site_name_hint"/>
             <EditText
                 android:id="@+id/site_type"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Site Type"/>
+                android:hint="@string/site_type_hint"/>
             <EditText
                 android:id="@+id/site_address"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Site Address"/>
+                android:hint="@string/site_address_hint"/>
             <EditText
                 android:id="@+id/site_price"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Site Price"/>
+                android:hint="@string/site_price_hint"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -101,14 +101,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:drawableLeft="@android:drawable/ic_menu_camera"
-        android:text="Choose Image"/>
+        android:text="@string/choose_image"/>
 
     <Button
         android:id="@+id/add_new_site_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Submit Site"/>
+        android:text="@string/submit_site"/>
 
     <ImageView
         android:layout_width="wrap_content"

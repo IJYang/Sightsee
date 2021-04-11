@@ -57,7 +57,7 @@
                             android:adjustViewBounds="true"
                             android:layout_height="match_parent"
                             android:layout_width="match_parent"
-                            android:text="Image" />
+                            android:text="@string/image" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -68,7 +68,7 @@
                         <TextView
                             android:id="@+id/siteName"
                             style="@style/text_heading1"
-                            android:text="Name"/>
+                            android:text="@string/name"/>
 
                         <View
                             android:id="@+id/name_separator_line"
@@ -89,17 +89,17 @@
 
                             <TextView
                                 android:id="@+id/siteAddress"
-                                android:text="Address"
+                                android:text="@string/address"
                                 style="@style/text_standard"
                                 />
                             <TextView
                                 android:id="@+id/siteType"
-                                android:text="Type"
+                                android:text="@string/type"
                                 style="@style/text_standard"
                                 />
                             <TextView
                                 android:id="@+id/sitePrice"
-                                android:text="Price"
+                                android:text="@string/price"
                                 style="@style/text_standard"
                                 />
                         </LinearLayout>
@@ -191,7 +191,7 @@
                                 style="@style/btn_standard"
                                 android:layout_gravity="center_horizontal"
                                 android:onClick="addPromotion"
-                                android:text="Add Promotion"
+                                android:text="@string/add_promotion"
                                 />
                             <Button
                                 android:id="@+id/morePromosBtn"
@@ -232,7 +232,7 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:text="Submit"
+                            android:text="@string/submit"
                             android:onClick="submitComment"
                             style="@style/btn_standard"
                             android:layout_marginRight="20dp"/>

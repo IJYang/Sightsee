@@ -26,8 +26,6 @@ public class PromotionAdapter extends ArrayAdapter<Promotion> {
         _context = context;
     }
 
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Activity activity = (Activity) _context;
@@ -35,15 +33,15 @@ public class PromotionAdapter extends ArrayAdapter<Promotion> {
         Promotion promotion = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.promotion_list, parent, false);
+            convertView =
+                    LayoutInflater
+                    .from(getContext())
+                    .inflate(R.layout.promotion_list, parent, false);
         }
 
-        // Get the views
         TextView tv_title = convertView.findViewById(R.id.tv_promoTitle);
         TextView tv_details = convertView.findViewById(R.id.tv_promoDetails);
 
-        // Inflate views with data
-        // TODO: Fill with Firebase Comment Data
         tv_title.setText(promotion.getPromotionTitle());
         tv_details.setText(promotion.getPromotionDetail());
 

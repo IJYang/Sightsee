@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sightsee.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,12 +23,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText editEmail, editPassword;
-    Button btnRegister;
-    TextView tvLogin;
-    ProgressBar progressBar;
-    FirebaseAuth fAuth;
-    DatabaseReference databaseCases;
+    private EditText editEmail, editPassword;
+    private Button btnRegister;
+    private TextView tvLogin;
+    private ProgressBar progressBar;
+    private FirebaseAuth fAuth;
+    private DatabaseReference databaseCases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,21 +55,22 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = editPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    editEmail.setError("Email is required");
+                    editEmail.setError(getString(R.string.email_error));
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    editEmail.setError("Password is required");
+                    editEmail.setError(getString(R.string.password_error));
                     return;
                 }
                 if (password.length() <6) {
-                    editEmail.setError("Password must be >= 6 characters.");
+                    editEmail.setError(getString(R.string.password_length_error));
                     return;
                 }
                 progressBar.setVisibility(View.VISIBLE);
 
                 // register user
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -79,17 +78,21 @@ public class RegisterActivity extends AppCompatActivity {
                             databaseCases = FirebaseDatabase.getInstance().getReference("users");
                             DatabaseReference newUserRef = databaseCases.push();
                             if (admin_checkbox.isChecked()) {
-                                newUserRef.setValue(new User(email, "admin"));
+                                newUserRef.setValue(new User(email, getString(R.string.admin_type)));
                             }
                             else {
-                                newUserRef.setValue(new User(email, "default"));
+                                newUserRef.setValue(new User(email, getString(R.string.default_type)));
                             }
                             // String key = databaseCases.push().getKey();
 
-                            Toast.makeText(com.example.sightsee.RegisterActivity.this, "User Created", Toast.LENGTH_LONG).show();
+                            Toast.makeText(com.example.sightsee.RegisterActivity.this,
+                                    getString(R.string.user_created), Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
-                            Toast.makeText(com.example.sightsee.RegisterActivity.this, "ERROR: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(com.example.sightsee.RegisterActivity.this,
+                                    getString(R.string.login_error_message)
+                                            + task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }

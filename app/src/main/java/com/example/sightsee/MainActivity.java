@@ -35,14 +35,14 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ListView lv;
-    ArrayList<Site> siteList;
-    TextView tvLogout;
-    TextView tvProfile;
-    NavigationView navigationView;
-    DatabaseReference databaseCases;
+    private ArrayList<Site> siteList;
+    private TextView tvLogout;
+    private TextView tvProfile;
+    private NavigationView navigationView;
+    private DatabaseReference databaseCases;
     private FirebaseAuth mAuth;
-    ArrayList<User> userList;
-    Map<Site, String> map = new HashMap<Site, String>();
+    private  ArrayList<User> userList;
+    private Map<Site, String> map = new HashMap<Site, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +98,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     for (User user: userList) {
                         if (user.user_email.equals(user_email)) {
                             String user_type = user.user_type;
-                            if (user_type.equals("admin") && id == R.id.add_location) {
-                                startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                            if (user_type.equals(getString(R.string.admin_type))) {
+                                startActivity(new Intent(getApplicationContext(),
+                                        AddSiteActivity.class));
                             }
                             else {
-                                Toast.makeText(MainActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this,
+                                        getString(R.string.insufficient_privileges),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -113,13 +116,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.home) {
-//                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 return false;
             }
         });
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         databaseCases = FirebaseDatabase.getInstance().getReference();
         databaseCases.addValueEventListener(new ValueEventListener() {
             @Override
@@ -182,7 +183,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void removeHeader(View view) {
         CardView header = findViewById(R.id.main_header);
         ListView site_list = findViewById(R.id.site_list);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params =
+                new LinearLayout
+                        .LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0,25,0,0);
         site_list.setLayoutParams(params);
         header.setVisibility(View.GONE);

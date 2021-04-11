@@ -29,7 +29,7 @@
                     android:adjustViewBounds="true"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:text="@string/card_image" />
+                    android:text="@string/image" />
             </LinearLayout>
 
             <LinearLayout
@@ -45,7 +45,7 @@
                     android:id="@+id/site_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/card_name"
+                    android:text="@string/name"
                     android:textSize="24sp"
                     android:gravity="end"
                     android:textColor="@color/white"
