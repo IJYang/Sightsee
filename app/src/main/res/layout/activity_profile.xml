@@ -35,7 +35,7 @@
             android:background="#2E2E2E"
             android:gravity="center"
             android:textSize="20sp"
-            android:text="User Profile"
+            android:text="@string/user_profile"
             android:textColor="@color/white"/>
 
         <androidx.cardview.widget.CardView
@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="Email: "
+                        android:text="@string/email_header"
                         android:textColor="@color/black"
                         android:gravity="center_horizontal"
                         android:textSize="20sp"
@@ -95,7 +95,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="User Type: "
+                        android:text="@string/user_type_header"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/black"
                         android:gravity="center_horizontal"

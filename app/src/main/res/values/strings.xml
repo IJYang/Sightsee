@@ -18,6 +18,8 @@
     <string name="loading_text">Loading...</string>
     <string name="insufficient_privileges">Insufficient Privileges.</string>
     <string name="email">Email</string>
+    <string name="email_header">Email: </string>
+    <string name="user_type_header">User Type: </string>
     <string name="password">Password</string>
     <string name="login_title">Login</string>
     <string name="create_new_account">Create account</string>
@@ -30,7 +32,24 @@
     <string name="add_location">Add a Location</string>
     <string name="address_header">Address: %1$s</string>
     <string name="type_header">Type: %1$s</string>
+    <string name="type_header_only">Type: </string>
+    <string name="address_header_only">Address: </string>
+    <string name="price_header_only">Price: </string>
     <string name="price_header">Price: %1$s</string>
+    <string name="name_header">Name: </string>
+    <string name="main_header">Popular Attractions in British Columbia</string>
+    <string name="user_profile">User Profile</string>
+    <string name="image">Image</string>
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="price">Price</string>
+    <string name="address">Address</string>
+    <string name="add_attraction">Add Attraction</string>
+    <string name="site_name_hint">Enter Site Name</string>
+    <string name="site_type_hint">Enter Site Type</string>
+    <string name="site_address_hint">Enter Site Address</string>
+    <string name="site_price_hint">Enter Site Price</string>
+
 
     <!-- Comment List -->
     <string name="tv_username">Username: \u0020</string>
@@ -45,8 +64,20 @@
     <string name="comment_et_hint">Enter your comment...</string>
     <string name="no_comment">No comment provided</string>
     <string name="comment_added">Comment added!</string>
+    <string name="comments_header">Comments</string>
 
     <!-- Promotion List-->
     <string name="tv_promo_title">Promotions</string>
+    <string name="add_promotion">Add Promotion</string>
+    <string name="title_header">Title: </string>
+    <string name="promotion_detail_header">Details: </string>
+    <string name="choose_image">Choose Image</string>
+    <string name="submit_promotion">Submit Promotion</string>
+    <string name="submit">Submit</string>
+    <string name="submit_site">Submit Site</string>
+
+    <string name="fragment_username">Fragment Username</string>
+    <string name="fragment_rating">Fragment Rating</string>
+    <string name="fragment_comment">Fragment Comment </string>
 
 </resources>

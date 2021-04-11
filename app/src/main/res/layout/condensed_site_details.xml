@@ -29,7 +29,7 @@
                     android:adjustViewBounds="true"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:text="Image" />
+                    android:text="@string/image" />
             </LinearLayout>
 
             <LinearLayout
@@ -45,7 +45,7 @@
                     android:id="@+id/site_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textSize="24sp"
                     android:gravity="end"
                     android:textColor="@color/white"
@@ -57,7 +57,7 @@
                     android:id="@+id/site_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Type"
+                    android:text="@string/type"
                     android:textSize="14sp"
                     android:textColor="@color/white"
                     android:layout_marginRight="10dp"
@@ -67,7 +67,7 @@
                     android:id="@+id/site_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Type"
+                    android:text="@string/price"
                     android:textSize="14sp"
                     android:textColor="@color/white"
                     android:layout_marginRight="10dp"

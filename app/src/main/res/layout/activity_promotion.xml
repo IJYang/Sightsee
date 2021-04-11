@@ -34,7 +34,7 @@
             android:background="#2E2E2E"
             android:gravity="center"
             android:textSize="20sp"
-            android:text="Promotions"
+            android:text="@string/tv_promo_title"
             android:textColor="@color/white"/>
         <ListView
             android:layout_marginTop="0dp"

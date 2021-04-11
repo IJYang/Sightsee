@@ -50,7 +50,7 @@
                 android:layout_weight="0.55">
                 <TextView
                     android:id="@+id/tv_promoDetails"
-                    android:text="Details"
+                    android:text="@string/detail_header"
                     android:layout_width="match_parent"
                     android:layout_marginLeft="20dp"
                     android:layout_height="wrap_content"
