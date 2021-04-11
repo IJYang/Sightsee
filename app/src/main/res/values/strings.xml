@@ -75,6 +75,8 @@
     <string name="submit_promotion">Submit Promotion</string>
     <string name="submit">Submit</string>
     <string name="submit_site">Submit Site</string>
+    <string name="promotion_name_hint">Enter Promotion Name</string>
+    <string name="promotion_detail_hint">Enter Promotion Details</string>
 
     <string name="fragment_username">Fragment Username</string>
     <string name="fragment_rating">Fragment Rating</string>
