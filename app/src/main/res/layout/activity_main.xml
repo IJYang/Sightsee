@@ -16,38 +16,14 @@
         android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="#333232"
-            app:titleTextColor="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-<!--        <ImageView-->
-<!--            android:id="@+id/tv_header_title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="right"-->
-<!--            android:layout_marginRight="-280dp"-->
-<!--            android:paddingRight="-80dp"-->
-<!--            android:src="@drawable/sight_see_icon" />-->
+        android:id="@+id/toolbar"
+        app:titleTextColor="@color/white"
+        style="@style/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     </androidx.appcompat.widget.Toolbar>
-
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbar2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:background="#ECECEC"-->
-<!--            android:minHeight="?attr/actionBarSize"-->
-<!--            android:theme="?attr/actionBarTheme"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/toolbar" />-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/main_header"
@@ -68,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Popular Attractions in British Columbia"
+                    android:text="@string/attractions_title_card"
                     android:textColor="@color/white"
                     android:textSize="18dp"/>
             </LinearLayout>
@@ -90,7 +66,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sightsee"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"

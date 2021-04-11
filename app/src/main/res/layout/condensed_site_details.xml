@@ -29,7 +29,7 @@
                     android:adjustViewBounds="true"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:text="Image" />
+                    android:text="@string/card_image" />
             </LinearLayout>
 
             <LinearLayout
@@ -45,7 +45,7 @@
                     android:id="@+id/site_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="@string/card_name"
                     android:textSize="24sp"
                     android:gravity="end"
                     android:textColor="@color/white"
@@ -55,23 +55,15 @@
 
                 <TextView
                     android:id="@+id/site_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="@string/card_type"
+                    style="@style/card_text_standard"
+                    />
 
                 <TextView
                     android:id="@+id/site_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="@string/card_type"
+                    style="@style/card_text_standard"
+                    />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

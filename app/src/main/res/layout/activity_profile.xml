@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity"
-    android:background="#D0E3E3E3"
+    android:background="@color/user_header_bar"
     android:id="@+id/drawer_layout">
 
     <LinearLayout
@@ -17,12 +17,8 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="#333232"
+            style="@style/toolbar"
             app:titleTextColor="@color/white"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,13 +26,9 @@
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="#2E2E2E"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:text="User Profile"
-            android:textColor="@color/white"/>
+            android:text="@string/user_profile_header"
+            style="@style/title_bar"
+            />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -57,12 +49,6 @@
                     android:id="@+id/site_image_display"
                     android:src="@drawable/ic_baseline_account_circle_24"/>
 
-            <!--    <Button-->
-            <!--        android:layout_width="wrap_content"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:text="upload profile picture"-->
-            <!--        android:layout_gravity="center"/>-->
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,22 +56,18 @@
                     android:focusable="false"
                     android:focusableInTouchMode="true">
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Email: "
-                        android:textColor="@color/black"
-                        android:gravity="center_horizontal"
-                        android:textSize="20sp"
-                        android:padding="5dp"/>
+                        android:text="@string/user_profile_email"
+                        style="@style/user_profile_text"
+                        />
                     <TextView
+                        android:id="@+id/tv_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:textSize="20sp"
                         android:textColor="@color/black"
                         android:padding="5dp"
-                        android:id="@+id/tv_email"/>
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,14 +75,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="User Type: "
-                        android:layout_marginLeft="10dp"
-                        android:textColor="@color/black"
-                        android:gravity="center_horizontal"
-                        android:textSize="20sp"
-                        android:padding="5dp"/>
+                        android:text="@string/user_profile_user_type"
+                        style="@style/user_profile_text"
+                        />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

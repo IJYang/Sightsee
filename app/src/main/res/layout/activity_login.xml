@@ -24,22 +24,15 @@
             android:layout_weight="0.95">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="@string/app_name"
-                android:textSize="50sp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:textColor="@color/white"/>
+                style="@style/login_title"
+                />
+
             <TextView
                 android:id="@+id/tvApp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textSize="22sp"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:text="@string/login_title" />
+                android:text="@string/login_title"
+                style="@style/login_heading1"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -49,28 +42,19 @@
 
                 <EditText
                     android:id="@+id/editEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
                     app:backgroundTint="@color/white"
                     android:hint="@string/email"
-                    android:inputType="textPersonName" />
+                    style="@style/login_editText"
+                    />
 
                 <EditText
                     android:id="@+id/editPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    app:backgroundTint="@color/white"
+                    android:layout_marginTop="0dp"
                     android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    app:backgroundTint="@color/white"
+                    style="@style/login_editText"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,23 +65,19 @@
 
                     <Button
                         android:id="@+id/btnLogin"
-                        android:layout_weight="2"
-                        android:background="#17297A34"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:background="@color/login_blue"
                         android:textAllCaps="false"
-                        android:text="@string/login" />
+                        android:text="@string/login"
+                        style="@style/login_btn"
+                        />
 
                     <TextView
                         android:id="@+id/tvCreateNewAccount"
-                        android:layout_weight="2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textAlignment="center"
                         android:text="@string/create_new_account"
-                        android:layout_marginLeft="20dp" />
+                        style="@style/login_btn"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
