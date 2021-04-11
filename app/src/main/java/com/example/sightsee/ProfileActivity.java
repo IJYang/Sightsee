@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,11 +31,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ProfileActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     private ListView lv;
 
-    NavigationView navigationView;
-    ArrayList<User> userList;
+    private NavigationView navigationView;
+    private ArrayList<User> userList;
 
     public DatabaseReference mDatabase;
     public String uid, email;
@@ -51,10 +51,10 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
 
         TextView tv_email = (TextView) findViewById(R.id.tv_email);
-        tv_email.setText("Loading...");
+        tv_email.setText(getString(R.string.loading_text));
 
         TextView tv_userType = (TextView) findViewById(R.id.tv_userType);
-        tv_userType.setText("Loading...");
+        tv_userType.setText(getString(R.string.loading_text));
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -63,8 +63,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
             uid = user.getUid();
         } else {
-            tv_userType.setText("Error");
-            tv_email.setText("Error");
+            tv_userType.setText(getString(R.string.error_text));
+            tv_email.setText(getString(R.string.error_text));
 
         }
 
@@ -72,7 +72,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
+                    Log.e("firebase", getString(R.string.error_getting_data_msg),
+                            task.getException());
                 }
                 else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
@@ -105,7 +106,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -136,18 +136,20 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                     for (User user: userList) {
                         if (user.user_email.equals(user_email)) {
                             String user_type = user.user_type;
-                            if (user_type.equals("admin") && id == R.id.add_location) {
-                                startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                            if (user_type.equals(getString(R.string.admin_type))) {
+                                startActivity(new Intent(getApplicationContext(),
+                                        AddSiteActivity.class));
                             }
                             else {
-                                Toast.makeText(ProfileActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ProfileActivity.this,
+                                        getString(R.string.insufficient_privileges),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.profile) {
-//                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     drawer.closeDrawer(GravityCompat.START);
                 }
                 else if (id == R.id.home) {

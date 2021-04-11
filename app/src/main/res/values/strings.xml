@@ -5,13 +5,17 @@
     <string name="login">Login</string>
     <string name="login_success_message">Login successful!</string>
     <string name="login_error_message">ERROR: </string>
+    <string name="error_text">Error</string>
+    <string name="error_getting_data_msg">Error getting data</string>
     <string name="email_error">Email is required</string>
     <string name="password_error">Password is required</string>
     <string name="password_length_error">Password must be >= 6 characters.</string>
     <string name="register">Register</string>
+    <string name="user_created">User Created</string>
     <string name="logout">Logout</string>
     <string name="admin_type">admin</string>
     <string name="default_type">default</string>
+    <string name="loading_text">Loading...</string>
     <string name="insufficient_privileges">Insufficient Privileges.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -24,6 +28,9 @@
     <string name="see_more_button">See More</string>
     <string name="tv_comments">Comments</string>
     <string name="add_location">Add a Location</string>
+    <string name="address_header">Address: %1$s</string>
+    <string name="type_header">Type: %1$s</string>
+    <string name="price_header">Price: %1$s</string>
 
     <!-- Comment List -->
     <string name="tv_username">Username: \u0020</string>
@@ -36,6 +43,8 @@
     <string name="detail_header">Details</string>
     <string name="enter_comment_prompt">Leave a Comment</string>
     <string name="comment_et_hint">Enter your comment...</string>
+    <string name="no_comment">No comment provided</string>
+    <string name="comment_added">Comment added!</string>
 
     <!-- Promotion List-->
     <string name="tv_promo_title">Promotions</string>

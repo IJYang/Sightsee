@@ -13,16 +13,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.Promotion;
-import com.example.sightsee.Models.Site;
 import com.example.sightsee.Models.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,18 +26,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
-public class PromotionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class PromotionActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
-    DatabaseReference databaseCases;
-    ArrayList<Promotion> promo_list;
-    int siteId;
+    private DatabaseReference databaseCases;
+    private ArrayList<Promotion> promo_list;
     private ListView lv;
-
-    NavigationView navigationView;
-    ArrayList<User> userList;
+    private NavigationView navigationView;
+    private ArrayList<User> userList;
     public DatabaseReference mDatabase;
 
     @Override
@@ -64,15 +57,14 @@ public class PromotionActivity extends AppCompatActivity implements NavigationVi
                         promo_list.add(promotion);
                     }
                 }
-                PromotionAdapter adapter = new PromotionAdapter(PromotionActivity.this, promo_list);
+                PromotionAdapter adapter =
+                        new PromotionAdapter(PromotionActivity.this, promo_list);
                 lv.setEmptyView(findViewById(android.R.id.empty));
                 lv.setAdapter(adapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
-
-
         LinearLayout expanded_site_detail = findViewById(R.id.lineParent);
         int position = (Integer) getIntent().getExtras().get("position");
         if (position % 2 == 0) {
@@ -81,7 +73,6 @@ public class PromotionActivity extends AppCompatActivity implements NavigationVi
         else {
             expanded_site_detail.setBackgroundColor(Color.parseColor("#68B684"));
         }
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userList = new ArrayList<User>();
         DatabaseReference test = mDatabase.child("users");
@@ -95,7 +86,6 @@ public class PromotionActivity extends AppCompatActivity implements NavigationVi
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -126,11 +116,14 @@ public class PromotionActivity extends AppCompatActivity implements NavigationVi
                     for (User user: userList) {
                         if (user.user_email.equals(user_email)) {
                             String user_type = user.user_type;
-                            if (user_type.equals("admin") && id == R.id.add_location) {
-                                startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
+                            if (user_type.equals(getString(R.string.admin_type))) {
+                                startActivity(new Intent(getApplicationContext(),
+                                        AddSiteActivity.class));
                             }
                             else {
-                                Toast.makeText(PromotionActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PromotionActivity.this,
+                                        getString(R.string.insufficient_privileges),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

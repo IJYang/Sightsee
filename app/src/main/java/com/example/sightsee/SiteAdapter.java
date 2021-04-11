@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.sightsee.Models.Site;
 import com.squareup.picasso.Picasso;
 
@@ -31,7 +30,8 @@ public class SiteAdapter extends ArrayAdapter<Site> {
         Site site = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.condensed_site_details, parent, false);
+            convertView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.condensed_site_details, parent, false);
         }
 
         // Lookup view for data population

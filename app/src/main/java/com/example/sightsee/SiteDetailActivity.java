@@ -1,19 +1,14 @@
 package com.example.sightsee;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.location.Address;
-import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -26,16 +21,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.bumptech.glide.Glide;
 import com.example.sightsee.Models.Comment;
 import com.example.sightsee.Models.CommentUpload;
 import com.example.sightsee.Models.Promotion;
 import com.example.sightsee.Models.User;
-import com.example.sightsee.PromotionActivity;
-import com.example.sightsee.Models.Site;
-import com.example.sightsee.Models.Upload;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -43,17 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -66,8 +47,8 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
     private DatabaseReference databaseCases;
     private Button moreCommentsBtn;
     private GoogleMap mMap;
-    ArrayList<User> userList;
-    NavigationView navigationView;
+    private ArrayList<User> userList;
+    private NavigationView navigationView;
     private int position;
 
     @Override
@@ -129,9 +110,9 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
         TextView typetv = findViewById(R.id.siteType);
         TextView pricetv = findViewById(R.id.sitePrice);
 
-        addresstv.setText("Address: " + address);
-        typetv.setText("Type: " + type);
-        pricetv.setText("Price: " + price);
+        addresstv.setText(getString(R.string.address_header, address));
+        typetv.setText(getString(R.string.type_header, type));
+        pricetv.setText(getString(R.string.price_header, price));
 
         loadComments();
         loadPromotions();
@@ -164,11 +145,13 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
                     for (User user: userList) {
                         if (user.user_email.equals(user_email)) {
                             String user_type = user.user_type;
-                            if (user_type.equals("admin") && id == R.id.add_location) {
+                            if (user_type.equals(getString(R.string.admin_type))) {
                                 startActivity(new Intent(getApplicationContext(), AddSiteActivity.class));
                             }
                             else {
-                                Toast.makeText(SiteDetailActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SiteDetailActivity.this,
+                                        getString(R.string.insufficient_privileges),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -298,7 +281,9 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(SiteDetailActivity.this, "Insufficient Privileges.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SiteDetailActivity.this,
+                            getString(R.string.insufficient_privileges),
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -313,7 +298,8 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
         String capitalized_user_id = user_id.substring(0, 1).toUpperCase() + user_id.substring(1);
 
         if (comment_text.trim().equals("")) {
-            Toast.makeText(SiteDetailActivity.this, "No comment provided", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SiteDetailActivity.this, getString(R.string.no_comment),
+                    Toast.LENGTH_SHORT).show();
         }
         else {
             CommentUpload comment_upload = new CommentUpload(capitalized_user_id.trim(),
@@ -321,30 +307,9 @@ public class SiteDetailActivity extends AppCompatActivity implements OnMapReadyC
                     comment_text.trim());
             String uploadId = mDatabaseRef.push().getKey();
             mDatabaseRef.child(uploadId).setValue(comment_upload);
-            Toast.makeText(SiteDetailActivity.this, "Comment added!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SiteDetailActivity.this,
+                    getString(R.string.comment_added), Toast.LENGTH_SHORT).show();
             comment_edit_text.setText("");
         }
     }
-
-    public LatLng determineLatLngFromAddress(Context appContext, String strAddress) {
-        LatLng latLng = null;
-        Geocoder geocoder = new Geocoder(appContext, Locale.getDefault());
-        List<Address> geoResults = null;
-
-        try {
-            geoResults = geocoder.getFromLocationName(strAddress, 1);
-            while (geoResults.size()==0) {
-                geoResults = geocoder.getFromLocationName(strAddress, 1);
-            }
-            if (geoResults.size()>0) {
-                Address addr = geoResults.get(0);
-                latLng = new LatLng(addr.getLatitude(),addr.getLongitude());
-            }
-        } catch (Exception e) {
-            System.out.print(e.getMessage());
-        }
-
-        return latLng; //LatLng value of address
-    }
-
 }
