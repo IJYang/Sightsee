@@ -3,8 +3,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login">Login</string>
+    <string name="login_success_message">Login successful!</string>
+    <string name="login_error_message">ERROR: </string>
+    <string name="email_error">Email is required</string>
+    <string name="password_error">Password is required</string>
+    <string name="password_length_error">Password must be >= 6 characters.</string>
     <string name="register">Register</string>
     <string name="logout">Logout</string>
+    <string name="admin_type">admin</string>
+    <string name="default_type">default</string>
+    <string name="insufficient_privileges">Insufficient Privileges.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login_title">Login</string>
