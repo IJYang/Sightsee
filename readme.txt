@@ -1,4 +1,4 @@
-Sightsee:
+Sightsee: Tourism App for BC
 
 Register an account by providing login credential information in the registration page OR use the following:
 
